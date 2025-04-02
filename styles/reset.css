@@ -5,13 +5,10 @@
 }
 
 input,
-text-area,
+textarea,
 button {
   font-size: inherit;
   font-family: inherit;
   color: inherit;
-}
-
-input {
-  min-width: 0;
+  min-width: 0px;
 }
