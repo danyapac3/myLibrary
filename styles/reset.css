@@ -4,8 +4,14 @@
   box-sizing: border-box;
 }
 
-input[type="text"] {
+input,
+text-area,
+button {
   font-size: inherit;
   font-family: inherit;
   color: inherit;
+}
+
+input {
+  min-width: 0;
 }

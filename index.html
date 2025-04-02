@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="page">
-    <div class="page__header header">
+    <header class="page__header header">
       <div class="header__content">
         <div class="header__logo"><span>my</span>Library</div>
         <div class="header__statistics">
@@ -23,7 +23,86 @@
         <label for="search-input"><img src="images/search.svg" alt=""></label>
       </div>
       <div class="header__avatar"></div>
-    </div>
+    </header>
+    <main class="page__main main">
+      <div class="main__in-progress-section in-progress-section">
+        <div class="in-progress-section__title">
+          <div class="in-progress-section__text">In progress</div>
+          <div class="in-progress-section__number">(3)</div>
+        </div>
+        <div class="in-progress-section__cards">
+          <div class="in-progress-section__card card">
+            <div class="card__cover"></div>
+            <div class="card__content">
+              <!-- Name: -->
+              <div class="card__input-group card__input-group--wide input-group">
+                <div class="input-group__label">Name:</div>
+                <input type="text">
+              </div>
+
+              <!-- Author: -->
+              <div class="card__input-group card__input-group--wide input-group">
+                <div class="input-group__label">Author:</div>
+                <input type="text">
+              </div>
+              
+              <!-- Category: -->
+              <div class="card__input-group card__input-group--wide input-group">
+                <div class="input-group__label">Category:</div>
+                <div class="input-group__select select" tabindex="-1">
+                  <div class="select__selected-option">Science</div>
+                  <div class="select__options">
+                    <div class="select__option" tabindex="-1">History</div>
+                    <div class="select__option" tabindex="-1">Science</div>
+                    <div class="select__option" tabindex="-1">Fantasy</div>
+                    <div class="select__option" tabindex="-1">Fantasy</div>
+                    <div class="select__option" tabindex="-1">Fantasy</div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Comment: -->
+              <div class="card__input-group card__input-group--wide input-group">
+                <div class="input-group__label">Comment:</div>
+                <textarea spellcheck="false"></textarea>
+              </div>
+              
+              <!-- Pages: -->
+              <div class="card__input-group input-group">
+                <div class="input-group__label">Pages:</div>
+                <div class="input-group__counter counter">
+                  <button type="button">-</button>
+                  <input type="text" inputmode="numeric" value="0">
+                  <button type="button">+</button>
+                </div>
+              </div>
+              
+              <!-- Page: -->
+              <div class="card__input-group input-group">
+                <div class="input-group__label">Page:</div>
+                <div class="input-group__counter counter">
+                  <button type="button">-</button>
+                  <input type="text" inputmode="numeric" value="0">
+                  <button type="button">+</button>
+                </div>
+              </div>
+
+              <!-- Rate: -->
+              <div class="card__input-group input-group">
+                <div class="input-group__label">Rate:</div>
+                <div class="input-group__counter counter">
+                  <button type="button">-</button>
+                  <input type="text" inputmode="numeric" value="0">
+                  <button type="button">+</button>
+                </div>
+              </div>
+
+              <button class="card__button" type="button">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 </body>
 </html>
