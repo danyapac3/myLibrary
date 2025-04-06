@@ -20,3 +20,4 @@ import "./sass/components/counter.sass";
 import "./sass/components/input-group.sass";
 import "./sass/components/select.sass";
 import "./sass/components/search.sass";
+import "./sass/components/button.sass";
