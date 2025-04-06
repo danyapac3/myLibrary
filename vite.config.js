@@ -3,6 +3,7 @@ const pathSrc = path.resolve(__dirname, "./src");
 
 
 export default {
+  base: '',
   css: {
     preprocessorOptions: {
       sass: {
