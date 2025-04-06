@@ -11,9 +11,9 @@ import "./sass/layout/page.sass";
 import "./sass/pages/home.sass";
 
 //components style
+import "./sass/components/section-header.sass";
 import "./sass/components/s-in-progress.sass";
 import "./sass/components/s-completed.sass";
-import "./sass/components/section-header.sass";
 import "./sass/components/book-in-progress.sass";
 import "./sass/components/book-completed.sass";
 import "./sass/components/counter.sass";
