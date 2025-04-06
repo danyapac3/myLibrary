@@ -1,0 +1,46 @@
+.book-in-progress
+  display: flex
+  align-items: center
+  gap: 12px
+
+.book-in-progress__cover
+  align-self: start
+  flex-basis: 240px
+  min-width: 120px
+  aspect-ratio: 3/4
+  background: url("../images/cover.jpg") #b9b9b9
+  background-position: center
+  background-size: 100%
+  background-repeat: no-repeat
+  @media (max-width: $breakpoint-sm)
+    min-width: 90px
+    flex-shrink: 1
+
+.book-in-progress__form
+  flex-basis: 428px
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 8px
+  flex-grow: 1
+  @media (max-width: $breakpoint-sm)
+    grid-template-columns: 1fr
+
+.book-in-progress__input-group
+  &.wide
+    grid-column: 1 / -1
+  @media (max-width: $breakpoint-sm)
+  :last-of-type:not(:last-child)
+    border-bottom: none
+    padding-bottom: 4px
+
+.book-in-progress__button
+  padding: 8px 0
+  background: rgb(0 0 0)
+  color: white
+  border: none
+  transition: background 0.2s
+  &:hover
+    background: rgb(40, 40, 40)
+  &:active
+    color: rgb(0 0 0)
+    background-color: rgb(175, 175, 175)

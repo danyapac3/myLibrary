@@ -1,0 +1,50 @@
+.input-group
+  display: flex
+  border-bottom: solid 1px rgb(0 0 0 / .6)
+  padding: 8px 0
+  font-size: 13px
+  gap: 10px
+
+  &:focus-within
+    border-bottom: solid 1px rgb(0 0 0 / .8)
+  
+    .input-group__label
+      opacity: 0.6
+
+.input-group__input 
+  width: 100%
+  flex-grow: 1
+  background: none
+  border: none
+  color: rgb(0 0 0 / .8)
+  outline: none
+
+  &:focus
+    color: #000
+
+
+.input-group__label
+  color: #000
+  opacity: 0.4
+  width: 54px
+
+.input-group__textarea 
+  background: none
+  outline: none
+  resize: none
+  width: 0
+  // flex-grow: 1
+  border: 0
+  height: 74px
+  scrollbar-width: thin
+  color: rgb(0 0 0 / .8)
+  
+  &:focus
+    color: #000
+
+.input-group__select
+  padding-right: 32px
+  flex-grow: 1
+
+.input-group__counter
+  margin-left: auto
