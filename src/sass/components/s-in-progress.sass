@@ -6,8 +6,9 @@
   gap: 40px
   grid-template-columns: repeat(auto-fill, minmax(620px, 1fr))
 
-  @media (max-width: $breakpoint-sm)
-    grid-template-columns: 1fr
+  +to-sm()
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+    gap: 20px
     
   
 // .in-progress-section__item

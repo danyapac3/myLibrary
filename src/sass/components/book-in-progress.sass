@@ -3,23 +3,22 @@
   align-items: start
   gap: 12px
 
-  @media (max-width: $breakpoint-xxs)
-    gap: 0px
-
+  +to-sm()
+    flex-direction: column
 
 .book-in-progress__cover
-  flex-basis: 183px
+  width: 183px
   flex-shrink: 0
   aspect-ratio: 3/4
   object-fit: cover
   display: flex
 
-  @media (max-width: $breakpoint-xxs)
-    flex-basis: 0px
-
   img
     width: 100%
     object-fit: cover
+  
+  +to-sm()
+    width: 100%
 
 
 .book-in-progress__content
@@ -32,8 +31,12 @@
   .wide
     grid-column: 1 / -1
 
-  @media (max-width: 668px)
+  +to-sm()
+    flex-basis: auto
+    flex-grow: 0
+    gap: 0
     grid-template-columns: 1fr
+
 
 // .book-in-progress__name
 
@@ -46,11 +49,18 @@
 .book-in-progress__interactions
   gap: 10px
   display: flex
+  grid-template-columns: 1fr 1fr
+
+  +to-sm()
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: auto auto
+
 
 .book-in-progress__page-counter
   padding: 10px
   flex: 1 1 189.5px
-
+  
 .book-in-progress__rate-counter
   padding: 10px
   flex: 1 1 189.5px
@@ -58,3 +68,6 @@
 .book-in-progress__read-button
   padding: 10px 20px
   flex: 1 0 66px
+
+  +to-sm()
+    grid-column: 1 / -1

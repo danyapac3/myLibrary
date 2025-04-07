@@ -2,6 +2,11 @@
   display: flex
   gap: 20px
   background-color: black
+  text-align: center
+
+  +to-sm()
+    flex-direction: column
+    gap: 4px
 
 .counter__title
   color: #fff
@@ -13,6 +18,9 @@
   display: flex
   flex-grow: 1
   gap: 20px
+
+  +to-sm
+    gap: 10px
 
 .counter__decrease-button
   flex-grow: 1
@@ -26,4 +34,3 @@
   border: none
   color: white
   text-align: center
-
