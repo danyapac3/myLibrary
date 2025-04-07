@@ -1,19 +1,26 @@
 .book-in-progress
   display: flex
-  align-items: center
+  align-items: start
   gap: 12px
+
+  @media (max-width: $breakpoint-xxs)
+    gap: 0px
+
 
 .book-in-progress__cover
   flex-basis: 183px
-  flex-shrink: 1
+  flex-shrink: 0
   aspect-ratio: 3/4
-  align-self: start
   object-fit: cover
   display: flex
+
+  @media (max-width: $breakpoint-xxs)
+    flex-basis: 0px
 
   img
     width: 100%
     object-fit: cover
+
 
 .book-in-progress__content
   flex-basis: 465px
@@ -39,19 +46,15 @@
 .book-in-progress__interactions
   gap: 10px
   display: flex
-  flex-wrap: wrap
 
 .book-in-progress__page-counter
   padding: 10px
-  flex: 1 0 189.5px
-
+  flex: 1 1 189.5px
 
 .book-in-progress__rate-counter
   padding: 10px
-  flex: 1 0 189.5px
+  flex: 1 1 189.5px
   
-
-
 .book-in-progress__read-button
   padding: 10px 20px
   flex: 1 0 66px

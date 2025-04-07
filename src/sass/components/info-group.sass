@@ -22,14 +22,29 @@ $font-size: 13px
 .info-group__text
   display: -webkit-box
   width: 100%
-  -webkit-box-orient: vertical
-  -webkit-line-clamp: 4
-  line-clamp: 4
   overflow: hidden
-  height: $line-height * $lines-number * $font-size
-  
+  position: relative
+  min-height: $line-height * $lines-number * $font-size
 
-.info-group__show-more-button
+  &.folded
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 4
+    line-clamp: 4
+    height: $line-height * $lines-number * $font-size
+
+
+  &.folded::after
+    display: block
+    position: absolute
+    bottom: 0px
+    left: 0px
+    content: ''
+    width: 100%
+    height: $line-height * 1 * $font-size
+    background: linear-gradient(0deg, $primary-gray 0%, rgba(0,0,0,0) 100%);
+
+.info-group__toggle-text-button
+  width: fit-content
   line-height: 1
   text-decoration: underline
   cursor: pointer
