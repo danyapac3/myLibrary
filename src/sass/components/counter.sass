@@ -1,24 +1,29 @@
 .counter
   display: flex
+  gap: 20px
+  background-color: black
 
-  button
-    width: 42px
-    background: rgb(0 0 0 / .0)
-    border: none
-    transition: background-color 0.2s
-  
-    &:hover
-      background: rgb(0 0 0 / .2)
+.counter__title
+  color: #fff
+  opacity: 0.6
+  flex-basis: 1
+  flex-shrink: 0
 
-    &:active
-      background: rgb(255 255 255 / .2)
+.counter__controls
+  display: flex
+  flex-grow: 1
+  gap: 20px
+
+.counter__decrease-button
+  flex-grow: 1
+
+.counter__increase-button
+  flex-grow: 1
 
 .counter__input
-  width: 42px
-  text-align: center
+  width: 33%
   background: none
   border: none
-  outline: none
+  color: white
+  text-align: center
 
-// .counter__reduce
-// .counter__increase

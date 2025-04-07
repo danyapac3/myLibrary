@@ -1,0 +1,38 @@
+$line-height: 1.2
+$lines-number: 4
+$font-size: 13px
+
+.info-group
+  font-size: 13px
+  line-height: $line-height
+  padding: 10px 10px
+  display: flex
+  gap: 20px
+  border-bottom: hsl(0 0% 80%) solid 1px
+
+.info-group__title
+  width: 64px
+  opacity: 0.6
+
+.info-group__content
+  display: flex
+  flex-direction: column
+  gap: 4px
+
+.info-group__text
+  display: -webkit-box
+  width: 100%
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: 4
+  line-clamp: 4
+  overflow: hidden
+  height: $line-height * $lines-number * $font-size
+  
+
+.info-group__show-more-button
+  line-height: 1
+  text-decoration: underline
+  cursor: pointer
+  user-select: none
+  &:hover
+    text-decoration: none

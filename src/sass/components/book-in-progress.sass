@@ -4,43 +4,54 @@
   gap: 12px
 
 .book-in-progress__cover
-  align-self: start
-  flex-basis: 240px
-  min-width: 120px
+  flex-basis: 183px
+  flex-shrink: 1
   aspect-ratio: 3/4
-  background: url("../images/cover.jpg") #b9b9b9
-  background-position: center
-  background-size: 100%
-  background-repeat: no-repeat
-  @media (max-width: $breakpoint-sm)
-    min-width: 90px
-    flex-shrink: 1
+  align-self: start
+  object-fit: cover
+  display: flex
 
-.book-in-progress__form
-  flex-basis: 428px
-  display: grid
-  grid-template-columns: 1fr 1fr
-  gap: 8px
+  img
+    width: 100%
+    object-fit: cover
+
+.book-in-progress__content
+  flex-basis: 465px
   flex-grow: 1
-  @media (max-width: $breakpoint-sm)
+  display: grid
+  gap: 10px
+  grid-template-columns: 1fr 1fr
+  
+  .wide
+    grid-column: 1 / -1
+
+  @media (max-width: 668px)
     grid-template-columns: 1fr
 
-.book-in-progress__input-group
-  &.wide
-    grid-column: 1 / -1
-  @media (max-width: $breakpoint-sm)
-  :last-of-type:not(:last-child)
-    border-bottom: none
-    padding-bottom: 4px
+// .book-in-progress__name
 
-.book-in-progress__button
-  padding: 8px 0
-  background: rgb(0 0 0)
-  color: white
-  border: none
-  transition: background 0.2s
-  &:hover
-    background: rgb(40, 40, 40)
-  &:active
-    color: rgb(0 0 0)
-    background-color: rgb(175, 175, 175)
+// .book-in-progress__author
+
+// .book-in-progress__pages
+
+// .book-in-progress__desctioption
+
+.book-in-progress__interactions
+  gap: 10px
+  display: flex
+  flex-wrap: wrap
+
+.book-in-progress__page-counter
+  padding: 10px
+  flex: 1 0 189.5px
+
+
+.book-in-progress__rate-counter
+  padding: 10px
+  flex: 1 0 189.5px
+  
+
+
+.book-in-progress__read-button
+  padding: 10px 20px
+  flex: 1 0 66px
