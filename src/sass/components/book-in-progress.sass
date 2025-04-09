@@ -6,6 +6,23 @@
   +to-sm()
     flex-direction: column
 
+
+
+
+.book-in-progress__content
+  display: grid
+  gap: 10px
+  // grid-template-columns: auto repeat(4, 1fr)
+  grid-template-columns: auto repeat(2, 1fr)
+
+  +to-sm()
+    grid-template-columns: 1fr
+    gap: 0px
+
+  +to-xs()
+    grid-template-columns: auto 1fr
+
+
 .book-in-progress__cover
   grid-row: 1 / 5
   width: 183px
@@ -19,19 +36,15 @@
     object-fit: cover
   
   +to-sm()
+    grid-row: 1
     width: 100%
-
-
-.book-in-progress__content
-  flex-basis: 465px
-  flex-grow: 1
-  display: grid
-  gap: 10px
-  grid-template-columns: auto repeat(4, 1fr)
-
-  +to-sm()
-    grid-template-columns: 1fr
-
+  
+  +to-xs()
+    grid-column: 1
+    grid-row: 1 / 3
+    width: auto
+    height: 100px
+    align-self: end    
 
 
 .book-in-progress__name
@@ -40,19 +53,34 @@
   +to-sm()
     grid-column: 1
 
+  +to-xs()
+    grid-column: 2
+    grid-row: 1
+    margin-left: 10px
+
 .book-in-progress__author
-  grid-column: span 2
+  grid-column: span 1
 
   +to-sm()
     grid-column: 1
+
+  +to-xs()
+    grid-column: 2
+    grid-row: 2
+    margin-left: 10px
+
 
 
 
 .book-in-progress__pages
-  grid-column: span 2
+  grid-column: span 1
 
   +to-sm()
     grid-column: 1
+
+  +to-xs()
+    grid-column: 1 / -1
+
 
 
 .book-in-progress__desctioption
@@ -60,6 +88,10 @@
 
   +to-sm()
     grid-column: 1
+  
+  +to-xs()
+    grid-column: 1 / -1
+
 
 
 .book-in-progress__interactions
@@ -73,16 +105,22 @@
     display: grid
     grid-template-columns: 1fr 1fr
     grid-template-rows: auto auto
+    margin-top: 10px
+  
+  +to-xs()
+    grid-column: 1 / -1
 
 
 .book-in-progress__page-counter
   padding: 10px
   flex: 1 1 189.5px
-  
+
+
 .book-in-progress__rate-counter
   padding: 10px
   flex: 1 1 189.5px
-  
+
+ 
 .book-in-progress__read-button
   padding: 10px 20px
   flex: 1 0 66px
