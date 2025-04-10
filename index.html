@@ -36,9 +36,7 @@
         </div>
         <button class="header__add-button button">
           <div class="button__text">Add new</div>
-          <svg class="button__icon" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 5.5H10M5 0.5V10.5" stroke="black"/>
-          </svg>
+          <img src="images/plus.svg" alt="">
         </button>
       </div>
     </header>
@@ -255,10 +253,7 @@
               </div>
               <div class="section-header__search search">
                 <input placeholder="Search..." class="search__input" type="text">
-                <svg class="search__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M17.5 17.5L13.875 13.875" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <img class="search__icon" src="images/search.svg" alt="">
               </div>
             </div>
           </div>
@@ -362,11 +357,68 @@
               <div class="book-completed__author">A.J. Danya</div>
             </div>
           </div>
-          
         </section>
       </div>
     </main>
-    <script type="module" src='src/main.js'></script>
+    <dialog class="page__modal-pick-books modal-pick-books">
+      <div class="modal-pick-books__search search">
+        <input placeholder="Search..." class="search__input" type="text">
+        <img class="search__icon" src="images/search.svg" alt="">
+      </div>
+        
+        
+      <div class="modal-pick-books__items">
+        <div class="modal-pick-books__book-to-pick book-to-pick">
+          <div class="book-to-pick cover">
+            <img src="public/images/cover.jpg" width="300" height="400" alt="">
+          </div>
+
+          <input class="book-to-pick__toggle-add-button toggle-button" type="checkbox" name="" id="">
+            
+          <div class="book-to-pick__content">
+            <div class="book-to-pick__date info-group">
+              <div class="info-group__title">Date:</div>
+              <div class="info-group__content">2013</div>
+            </div>
+
+            <div class="book-to-pick__language info-group">
+              <div class="info-group__title">Language:</div>
+              <div class="info-group__content">Eng</div>
+            </div>
+
+            <div class="book-to-pick__pages info-group">
+              <div class="info-group__title">Pages</div>
+              <div class="info-group__content">312</div>
+            </div>
+
+            <div class="book-to-pick__name info-group">
+              <div class="info-group__category">Category</div>
+              <div class="info-group__content">History</div>
+            </div>
+
+            <div class="book-to-pick__date info-group">
+              <div class="info-group__author">Author</div>
+              <div class="info-group__content">A.J Danya</div>
+            </div>
+
+            <div class="book-to-pick__date info-group">
+              <div class="info-group__author">Name</div>
+              <div class="info-group__content">The lord of the rings</div>
+            </div>
+
+            <div class="book-to-pick__date info-group">
+              <div class="info-group__author">Desctiption</div>
+              <div class="info-group__content">
+                <div class="info-group__text folded">The Eighth Story. Nineteen Years Later. Based on an original new story by J.K. Rowling, John Tiffany, and Jack Thorne, a new play by Jack Thorne, "Harry Potter and the Cursed Child" is the eighth story in the Harry Potter series and the first official Harry Potter story to be presented on stage. The play will receive its world premiere in London's West End on July 30, 2016. It was always difficult being Harry Potter and it isn't much easier now that he is an overworked employee of the Ministry of Magic, a husband and father of three school-age children. While Harry grapples with a past that refuses to stay where it belongs, his youngest son Albus must struggle with the weight of a family legacy he never wanted. As past and present fuse ominously, both father and son learn the uncomfortable truth: sometimes, darkness comes from unexpected places.</div>
+                <div class="info-group__toggle-text-button">show more</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </dialog>
   </div>
+  <script type="module" src='src/main.js'></script>
 </body>
 </html>
