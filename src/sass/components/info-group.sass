@@ -11,13 +11,27 @@ $font-size: 13px
   border-bottom: hsl(0 0% 80%) solid 1px
   
   +to-sm()
+    &:not(.short)
+      flex-direction: column
+      gap: 4px
+      padding: 8px 10px
+  
+  +to-xs
     flex-direction: column
     gap: 4px
     padding: 8px 10px
 
+  &.short
+    gap: 8px
+
+  &.short .info-group__title
+    width: auto
+
+
 
 .info-group__title
   width: 64px
+  flex-shrink: 0
   opacity: 0.6
 
 .info-group__content

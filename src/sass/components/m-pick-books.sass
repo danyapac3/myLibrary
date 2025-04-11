@@ -1,29 +1,29 @@
 @use "sass:color"
 
 .modal-pick-books
-  margin: 0 auto
-  max-width: 600px
-  max-height: 100%
-  height: auto
   background: none
   border: none
   outline: none
-  top: 17.391304%
-  position: absolute
-  width: 100%
   display: flex
   flex-direction: column
-  gap: 6.521739% // 60/920
+  // gap: 6.521739% // 60/920
   overflow: hidden
+  position: relative
 
   &::backdrop
     background-color: color.change($primary-gray, $alpha: 90%)
     backdrop-filter: blur(10px)
 
+
 .modal-pick-books__search
   height: 36px
   flex-shrink: 0
 
+
 .modal-pick-books__items
+  padding-top: 6.521739svh // 60/920
   overflow: auto
   scrollbar-width: thin
+  gap: 20px
+  display: flex
+  flex-direction: column

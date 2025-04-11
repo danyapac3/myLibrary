@@ -1,0 +1,57 @@
+.book-to-pick
+  display: flex
+  gap: 20px
+  border-bottom: 1px solid rgb(0 0 0 / .2)
+  padding-bottom: 20px
+
+
+.book-to-pick__left-side
+  flex-basis: 110px
+  display: flex
+  flex-direction: column
+  gap: 10px
+  flex-shrink: 0
+
+  +to-xs()
+    flex-basis: 90px
+
+
+.book-to-pick__cover
+  aspect-ratio: 3/4
+  overflow: hidden
+
+  & img
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+
+.book-to-pick__select-book-toggle
+  width: 100%
+  height: 31px
+
+
+.book-to-pick__content
+  flex-basis: 470px
+  
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  
+  > *
+    grid-column: 1 / -1
+
+
+.book-to-pick__date
+  grid-column: 1
+
+.book-to-pick__language
+  grid-column: 2
+
+.book-to-pick__pages
+  grid-column: 3
+
+// .book-to-pick__name
+// .book-to-pick__author
+// .book-to-pick__category
+.book-to-pick__description
+  border-bottom: none
