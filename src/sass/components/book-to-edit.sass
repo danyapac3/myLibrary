@@ -1,0 +1,64 @@
+.book-to-edit
+  display: flex
+  gap: 20px
+  align-items: center
+  padding-block: 30px
+
+  +to-sm()
+    flex-direction: column
+
+
+.book-to-edit__cover
+  display: flex
+  overflow: hidden
+  flex-basis: 210px
+  flex-shrink: 0
+  aspect-ratio: 3/4
+  align-self: start
+
+  & img
+    width: 100%
+    object-fit: cover
+
+  +to-sm()
+    flex-basis: auto
+    width: 100%
+
+
+.book-to-edit__content
+  flex-basis: 438px
+  display: flex
+  flex-direction: column
+  gap: 10px
+
+  +to-sm()
+    flex-basis: auto
+
+
+.book-to-edit__row
+  display: flex
+  gap: 10px
+  width: 100%
+
+
+.book-to-edit__pages
+  flex: 1 1 0
+
+
+.book-to-edit__author
+  flex: 1 1 0
+
+
+// .book-to-edit__date
+
+
+// .book-to-edit__language
+
+
+// .book-to-edit__name
+
+
+// .book-to-edit__category
+
+
+// .book-to-edit__description

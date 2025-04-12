@@ -14,14 +14,25 @@ button
   color: inherit
   min-width: 0px
 
+
 button
   cursor: pointer
   border: none;
+
 
 body
   font-family: $primary-font-family
   font-size: $font-size-md
   
+
 html, body
   height: 100vh
   overflow: hidden
+
+  &:has(.modal-edit-book:open)
+    overflow: auto
+
+
+dialog
+  max-width: 100%
+  max-height: 100%

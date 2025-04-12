@@ -1,0 +1,23 @@
+@use "sass:color"
+
+.modal-edit-book
+  width: 668px
+  border: none
+  outline: none
+  background-color: rgb(0 0 0 / .0)
+  overflow: visible
+
+  +to-sm()
+    width: min(80%, 520px)
+
+  &::backdrop
+    background-color: color.change($primary-gray, $alpha: 90%)
+    backdrop-filter: blur(15px)
+
+.modal-edit-book__close-button
+  position: absolute
+  right: 0
+  top: 0
+
+
+// .modal-edit-book__book-to-edit

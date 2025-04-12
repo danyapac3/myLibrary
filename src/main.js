@@ -13,7 +13,8 @@ import "./sass/pages/home.sass";
 //components style
 import "./sass/components/section-header.sass";
 import "./sass/components/counter.sass";
-import "./sass/components/m-pick-books.sass";
+import "./sass/components/m-pick-books.sass"
+import "./sass/components/m-edit-book.sass"
 import "./sass/components/s-in-progress.sass";
 import "./sass/components/s-completed.sass";
 import "./sass/components/book-in-progress.sass";
@@ -24,7 +25,11 @@ import "./sass/components/search.sass";
 import "./sass/components/button.sass";
 import "./sass/components/toggle-button.sass";
 import "./sass/components/book-to-pick.sass";
+import "./sass/components/book-to-edit.sass";
 
-// ---Debug--- //
-const modal = document.querySelector('.modal-pick-books');
-modal.showModal();
+
+// // ---Debug--- //
+// const modal = document.querySelector('.modal-pick-books');
+// modal.showModal();
+// const modal1 = document.querySelector('.modal-edit-book');
+// modal1.showModal();
