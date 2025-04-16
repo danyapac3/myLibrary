@@ -10,5 +10,10 @@ export default {
         additionalData: `@use "${pathSrc}/sass/shared" as *\n`
       }
     }
-  }
+  },
+  resolve: {
+    alias: [
+        { find: '@', replacement: path.resolve(__dirname, 'src') },
+    ],
+  },
 }

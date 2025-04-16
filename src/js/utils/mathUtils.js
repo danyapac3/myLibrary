@@ -1,0 +1,1 @@
+export const snap = (value, step) => value - (value % step);
