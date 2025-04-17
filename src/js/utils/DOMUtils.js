@@ -11,3 +11,11 @@ export function findElements(node, referenceObject = {}) {
     return acc;
   }, {});
 }
+
+/**
+ * @param {Element} target
+ * @param {Element|Element[]} elements
+ */
+export function mountElements(target, elements) {
+  elements.forEach((element) => target.appendChild(element));
+}

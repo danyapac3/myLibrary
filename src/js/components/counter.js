@@ -1,0 +1,1 @@
+//TODO: Make counter as a separate component

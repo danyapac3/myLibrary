@@ -109,7 +109,7 @@ export default function render(book) {
 
     const markAsReadButton = element.querySelector(".book-in-progress__read-button");
     markAsReadButton.addEventListener('click', (e) => {
-      data.isRead = true;
+      data.isCompleted = true;
       console.log(data);
     });
   });
