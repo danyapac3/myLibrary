@@ -1,6 +1,8 @@
 @use "sass:color"
 
 .modal-pick-books
+  min-width: 100%
+  max-height: 100vh
   background: none
   border: none
   outline: none
@@ -13,6 +15,38 @@
     background-color: color.change($primary-gray, $alpha: 90%)
     backdrop-filter: blur(15px)
 
+  &:not(:open)
+    display: none
+
+
+.modal-pick-books__close-button
+  width: 32px
+  height: 32px
+  position: absolute
+  top: 30px
+  right: 30px 
+  background: url("/images/close.svg")
+  background-repeat: no-repeat
+  background-position: center
+  border-radius: 999px
+  transition: 0.1s background
+
+  &:hover
+    background-color: rgb(0 0 0 / .2)
+
+
+
+.modal-pick-books__container
+  padding-top: 16.666667svh // 160/960
+  display: flex
+  flex-direction: column
+
+  $side-margin: 16px
+  margin: 0 auto
+  max-width: min(600px, 100% - $side-margin * 2)
+  max-height: 100vh
+  width: 100%
+
 
 .modal-pick-books__search
   height: 36px
@@ -20,7 +54,7 @@
 
 
 .modal-pick-books__items
-  padding-top: 6.521739svh // 60/920
+  padding-top: 6.521739svh
   overflow: auto
   scrollbar-width: thin
   gap: 20px

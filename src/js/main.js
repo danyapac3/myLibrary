@@ -74,11 +74,16 @@ function mountBooks() {
 mountBooks();
 
 
+const addNewBookButton = document.querySelector('.header__add-button');
+const modalPickBooks = document.querySelector('.modal-pick-books');
+
+addNewBookButton.addEventListener('click', (e) => {
+  modalPickBooks.showModal();
+});
+
+modalPickBooks.showModal();
 
 // // ---Debug--- //
-// const modal = document.querySelector('.modal-pick-books');
-// modal.showModal();
+
 // const modal1 = document.querySelector('.modal-edit-book');
 // modal1.showModal();
-
-// const bookElement = ;
