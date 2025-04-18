@@ -10,7 +10,7 @@ export function processTemplate(template, data) {
   });
 }
 
-export function createElementFromTemplate(template, data, callback) {
+export function createElementFromTemplate(template, data = {}, callback = () => {}) {
   const processed = processTemplate(template, data);
   const element = createElementFromString(processed)
   callback(element, data);

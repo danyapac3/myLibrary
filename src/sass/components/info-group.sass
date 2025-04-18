@@ -2,6 +2,7 @@ $line-height: 1.15
 $lines-number: 4
 $font-size: 13px
 
+
 .info-group
   font-size: 13px
   line-height: $line-height
@@ -28,31 +29,27 @@ $font-size: 13px
     width: auto
 
 
-
 .info-group__title
   width: 64px
   flex-shrink: 0
   opacity: 0.6
 
-.info-group__content
-  display: flex
-  flex-direction: column
-  gap: 4px
 
-.info-group__text
+// .info-group__content
+
+.info-group.description .info-group__content
   display: -webkit-box
   width: 100%
   overflow: hidden
   position: relative
-  min-height: $line-height * $lines-number * $font-size
+  min-height: $line-height * $lines-number * $font-size  
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: 4
+  line-clamp: 4
+  height: $line-height * $lines-number * $font-size
 
-  &.folded
-    -webkit-box-orient: vertical
-    -webkit-line-clamp: 4
-    line-clamp: 4
-    height: $line-height * $lines-number * $font-size
 
-.info-group__toggle-text-button
+.info-group__expand-button
   width: fit-content
   line-height: 1
   text-decoration: underline

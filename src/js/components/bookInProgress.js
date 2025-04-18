@@ -2,7 +2,7 @@ import { createElementFromTemplate } from "@/js/utils/templateUtils"
 import { findElements } from "@/js/utils/DOMUtils";
 import { snap } from "@/js/utils/mathUtils";
 
-const template = 
+export const template = 
 /*html*/ `<div class="in-progress-section__item book-in-progress">
   <div class="book-in-progress__content">
     <div class="book-in-progress__cover">
@@ -20,12 +20,9 @@ const template =
       <div class="info-group__title">Pages</div>
       <div class="info-group__content">|[pages]|</div>
     </div>
-    <div class="book-in-progress__desctioption info-group">
+    <div class="book-in-progress__desctioption info-group description">
       <div class="info-group__title">Description</div>
-      <div class="info-group__content">
-        <div class="info-group__text folded">|[description]|</div>
-        <div class="info-group__toggle-text-button">show more</div>
-      </div>
+      <div class="info-group__content">|[description]|</div>
     </div>
     <div class="book-in-progress__interactions">
       <div class="book-in-progress__page-counter counter">
@@ -44,14 +41,14 @@ const template =
           <button class="counter__increase-button button dark">+</button>
         </div>
       </div>
-      <button class="book-in-progress__read-button button dark">Read</button>
+      <button class="book-in-progress__expand-button button dark">Expand</button>
     </div>
   </div>
 </div>
 `;
 
 
-function initializeCounter(counter, data, controlledPropertyName) {
+export function initializeCounter(counter, data, controlledPropertyName) {
   const {increaseButton, decreaseButton, input} = findElements(counter, {
     increaseButton: '.counter__increase-button',
     decreaseButton: '.counter__decrease-button',
@@ -96,19 +93,9 @@ export default function render(book) {
     
     initializeCounter(pageCounter, data, 'currentPage');
     initializeCounter(rateCounter, data, 'rate');
-  
-    const descriptionText = element.querySelector('.info-group__text');
-    const showMoreButton =  element.querySelector('.info-group__toggle-text-button');
-  
-    showMoreButton.addEventListener('click', (e) => {
-      descriptionText.classList.toggle('folded');
-      e.target.textContent = descriptionText.classList.contains('folded')
-        ? "show more"
-        : "hide";
-    });
 
-    const markAsReadButton = element.querySelector(".book-in-progress__read-button");
-    markAsReadButton.addEventListener('click', (e) => {
+    const expandButton = element.querySelector(".book-in-progress__expand-button");
+    expandButton.addEventListener('click', (e) => {
       data.isCompleted = true;
       console.log(data);
     });
