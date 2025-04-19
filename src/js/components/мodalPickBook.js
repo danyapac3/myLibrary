@@ -33,13 +33,17 @@ export default function render() {
   const modal = createElementFromTemplate(template);
   const modalItems = modal.querySelector('.modal-pick-books__items');
 
-
   const bookToPick = renderBookToPick(book);
   modalItems.appendChild(bookToPick);
 
   const closeButton = modal.querySelector('.modal-pick-books__close-button');
   closeButton.addEventListener('click', (e) => {
     modal.close()
+  });
+
+  const search = modal.querySelector('.search');
+  search.addEventListener('change', async (e) => {
+    
   });
   return modal;
 }

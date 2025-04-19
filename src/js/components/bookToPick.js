@@ -12,17 +12,9 @@ const template =
     </div>
   </div>
   <div class="book-to-pick__content">
-    <div class="book-to-pick__date info-group short">
+    <div class="book-to-pick__published info-group">
       <div class="info-group__title">Date:</div>
       <div class="info-group__content">|[publishDate]|</div>
-    </div>
-    <div class="book-to-pick__language info-group short">
-      <div class="info-group__title">Language:</div>
-      <div class="info-group__content">|[lang]|</div>
-    </div>
-    <div class="book-to-pick__pages info-group short">
-      <div class="info-group__title">Pages</div>
-      <div class="info-group__content">|[pages]|</div>
     </div>
     <div class="book-to-pick__name info-group">
       <div class="info-group__title">Name</div>
@@ -38,8 +30,7 @@ const template =
     </div>
     <div class="book-to-pick__description info-group description">
       <div class="info-group__title">Desctiption</div>
-      <div class="info-group__text">|[description]|</div>
-      <div class="info-group__toggle-text-button">show</div>
+      <div class="info-group__content">|[description]|</div>
     </div>
   </div>
 </div>
@@ -49,8 +40,6 @@ export default function render(book) {
   const element = createElementFromTemplate(template, book);
   const descriptionText = element.querySelector('.book-to-pick__description .info-group__text')
   const showMoreButton = element.querySelector('info-group__toggle-text-button');
-
   
-
   return element;
 }

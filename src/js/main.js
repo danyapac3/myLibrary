@@ -2,7 +2,8 @@ import "./styles";
 import renderBookInProgress from "@/js/components/bookInProgress";
 import renderBookCompleted from "@/js/components/bookCompleted";
 import renderModalPickBook from "@/js/components/мodalPickBook";
-import {mountElements} from "@/js/utils/DOMUtils";
+import { mountElements } from "@/js/utils/DOMUtils";
+import { getBooks } from "@/js/booksAPI";
 
 import { createBook } from "@/js/factories/book"
 
@@ -15,7 +16,7 @@ for (let i = 0; i < 4; i++) {
     author: 'A.J. Danya',
     description: `The Eighth Story. Nineteen Years Later. Based on an original new story by J.K. Rowling, John Tiffany, and Jack Thorne, a new play by Jack Thorne, "Harry Potter and the Cursed Child" is the eighth story in the Harry Potter series and the first official Harry Potter story to be presented on stage. The play will receive its world premiere in London's West End on July 30, 2016. It was always difficult being Harry Potter and it isn't much easier now that he is an overworked employee of the Ministry of Magic, a husband and father of three school-age children. While Harry grapples with a past that refuses to stay where it belongs, his youngest son Albus must struggle with the weight of a family legacy he never wanted. As past and present fuse ominously, both father and son learn the uncomfortable truth: sometimes, darkness comes from unexpected places.`,
     pages: 200,
-    category: 'History',
+    category: 'Histoy',
     lang: 'eng',
     publishDate: 2016,
     isCompleted: Boolean(Math.round(Math.random())),
@@ -56,8 +57,3 @@ const pickNewBookButton = document.querySelector('.header__add-button');
 pickNewBookButton.addEventListener('click', (e) => {
   modalPickBook.showModal();
 });
-
-// // ---Debug--- //
-
-// const modal1 = document.querySelector('.modal-edit-book');
-// modal1.showModal();

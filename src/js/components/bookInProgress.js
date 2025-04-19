@@ -16,9 +16,9 @@ export const template =
       <div class="info-group__title">Author</div>
       <div class="info-group__content">|[author]|</div>
     </div>
-    <div class="book-in-progress__pages info-group">
-      <div class="info-group__title">Pages</div>
-      <div class="info-group__content">|[pages]|</div>
+    <div class="book-in-progress__published info-group">
+      <div class="info-group__title">Published</div>
+      <div class="info-group__content">|[publishDate]|</div>
     </div>
     <div class="book-in-progress__desctioption info-group description">
       <div class="info-group__title">Description</div>
@@ -29,7 +29,7 @@ export const template =
         <div class="counter__title">Page: </div>
         <div class="counter__controls">
           <button class="counter__decrease-button button dark">−</button>
-          <input min="0" max="|[pages]|" step="1" class="counter__input" type="text" inputmode="numeric" value="|[currentPage]|">
+          <input min="0" max="999" step="1" class="counter__input" type="text" inputmode="numeric" value="|[currentPage]|">
           <button class="counter__increase-button button dark">+</button>
         </div>
       </div>
