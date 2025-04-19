@@ -14,8 +14,8 @@ function queryParameter(params = {}) {
 }
 
 
-export async function getBooks(searchText, limit = 1, offset = 0) {
-  const result = []
+export async function fetchBooks(searchText, limit = 1, offset = 0) {
+  const books = []
   
   const docsUrl = `${url}/search.json` + queryParameter({
     q: searchText,
@@ -24,8 +24,8 @@ export async function getBooks(searchText, limit = 1, offset = 0) {
     offset,
   });
   
-  const docs = (await fetch(docsUrl)
-    .then(r => r.json())).docs;
+  const {docs, numFound} = await fetch(docsUrl)
+    .then(r => r.json());
 
   for (let doc of docs) {
     let book = {
@@ -57,13 +57,11 @@ export async function getBooks(searchText, limit = 1, offset = 0) {
 
     book.id = work.key.replace('/works/', '');
 
-    result.push(createBook(book));
+    books.push(createBook(book));
   }
 
-  return result;
+  return {
+    booksRemain: numFound - offset,
+    books: books,
+  };
 }
-
-
-// https://openlibrary.org/works/OL45804W.json
-getBooks('Harry Potter', 10)
-  .then(console.log);

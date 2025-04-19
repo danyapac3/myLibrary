@@ -4,11 +4,11 @@ const template =
 /*html*/ `<div class="modal-pick-books__book-to-pick book-to-pick">
   <div class="book-to-pick__left-side">
     <div class="book-to-pick__cover">
-      <img src="/images/cover.jpg" width="300" height="400" alt="">
+      <img src="|[imageSrc]|" width="300" height="400" alt="">
     </div>
     <div class="book-to-pick__select-book-toggle toggle-button">
-      <input class="toggle-button__checkbox" type="checkbox"  id="rediculous-id-1">
-      <label class="toggle-button__label" for="rediculous-id-1">Add</label>
+      <input class="toggle-button__checkbox" type="checkbox"  id="check-|[id]|">
+      <label class="toggle-button__label" for="check-|[id]|">Add</label>
     </div>
   </div>
   <div class="book-to-pick__content">
@@ -38,8 +38,6 @@ const template =
 
 export default function render(book) {
   const element = createElementFromTemplate(template, book);
-  const descriptionText = element.querySelector('.book-to-pick__description .info-group__text')
-  const showMoreButton = element.querySelector('info-group__toggle-text-button');
   
   return element;
 }

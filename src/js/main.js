@@ -3,7 +3,6 @@ import renderBookInProgress from "@/js/components/bookInProgress";
 import renderBookCompleted from "@/js/components/bookCompleted";
 import renderModalPickBook from "@/js/components/мodalPickBook";
 import { mountElements } from "@/js/utils/DOMUtils";
-import { getBooks } from "@/js/booksAPI";
 
 import { createBook } from "@/js/factories/book"
 
