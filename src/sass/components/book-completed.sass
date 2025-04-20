@@ -5,13 +5,13 @@
   align-items: stretch
 
 .book-completed__cover
-  aspect-ratio: 3/4
+  flex-grow: 1
   cursor: pointer
   position: relative
   transition: background-size 0.2s
-  background: url("../images/cover.jpg") #b9b9b9
   background-size: 100%
   background-position: center
+  overflow: hidden
 
   &:not(:last-child)
     margin-bottom: 12px
@@ -34,7 +34,8 @@
     background-color: #000
     opacity: 0%
     transition: opacity 0.2s
-
+    position: absolute
+  
   &::after
     content: ''
     display: block
@@ -50,6 +51,13 @@
     border-radius: 999px
     opacity: 0%
     transition: opacity 0.1s, transform 0.1s
+
+  & img
+    width: 100%
+    aspect-ratio: 3/4
+    object-fit: cover
+    user-select: none
+
   
 .book-completed__row
   display: flex
@@ -77,6 +85,7 @@
   max-width: 100px
   text-overflow: ellipsis
   overflow: hidden
+  white-space: nowrap
 
 .book-completed__name
   grid-column: 1 / -1
