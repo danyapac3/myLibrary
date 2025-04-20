@@ -61,7 +61,7 @@ export async function fetchBooks(searchText, limit = 1, offset = 0) {
   }
 
   return {
-    booksRemain: numFound - offset,
+    booksFoundNumber: numFound - offset,
     books: books,
   };
 }

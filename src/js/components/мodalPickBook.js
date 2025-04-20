@@ -13,7 +13,7 @@ const template =
       <img class="search__icon" src="images/search.svg" alt="">
     </div>
     <div class="modal-pick-books__items">
-      <div class="modal-pick-books__load-more-button button dark">Load More </div> 
+      <div class="modal-pick-books__load-more-button button dark invisible inactive">Load More</div> 
     </div>
   </div>
 </dialog>`;
@@ -33,11 +33,20 @@ export default function render() {
   const search = modal.querySelector('.search').querySelector('input');
   const loadedBooks = [];
   let loadOffset = 0;
-
+  
   async function loadBooks() {
-    const { books } = await fetchBooks(search.value, 3, loadOffset);
-    console.log(books);
+    const booksPerLoad = 3;
+    loadMoreButton.classList.toggle('inactive', true);
+    const { books, booksFoundNumber } = await fetchBooks(search.value, booksPerLoad, loadOffset);
     loadOffset += 3;
+
+    const booksLeft = booksFoundNumber - booksPerLoad;
+
+    loadMoreButton.textContent = `Load More (${booksLeft} left)`;
+    loadMoreButton.classList.toggle('invisible', !(booksLeft > 0));
+
+    console.log(booksLeft);
+    console.log(books);
     for (let book of books) {
       const bookToPick = renderBookToPick(book);
       modalItems.removeChild(loadMoreButton);
@@ -46,15 +55,21 @@ export default function render() {
 
       loadedBooks.push(bookToPick); 
     }
+
+    loadMoreButton.classList.toggle('inactive', false);
   }
 
   loadMoreButton.addEventListener('click', (e) => {
+    if (e.target.classList.contains('inactive')) {
+      return
+    }
     loadBooks();
   });
   
   search.addEventListener('change', (e) => {
     loadOffset = 0;
     loadedBooks.forEach(e => e.remove());
+    loadMoreButton.classList.toggle('invisible', false);
 
     loadBooks();
   });

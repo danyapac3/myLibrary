@@ -1,26 +1,62 @@
+@use "sass:color"
+  
+$fg-color: #000
+$bg-color: $primary-gray
+$bg-hover-color: color.adjust($primary-gray, $blackness: 10%);
+$bg-active-color: color.adjust($primary-gray, $blackness: 50%);
+
+$dark-fg-color: #fff
+$dark-bg-color: #000
+$dark-bg-hover-color: color.adjust(#000, $whiteness: 10%);
+$dark-bg-active-color: color.adjust(#000, $whiteness: 50%);
+
+
 .button
   background-color: $primary-gray
+  color: black
   display: flex
   align-items: center
   justify-content: center
   font-size: 13px
   gap: 12px
-  transition: filter 0.1s
+  transition: background-color 0.1s
   user-select: none
 
-  &.dark
-    background-color: black
-    color: $primary-gray
-
   &:hover
-    filter: invert(0.1)
+    background-color: $bg-hover-color
 
   &:active
-    filter: invert(0.9)
+    background-color: $bg-active-color
+
+  &.inactive
+    background-color: $bg-active-color
+
+
+.button.dark
+  background-color: $dark-bg-color
+  color: $dark-fg-color
+
+  &:hover
+    background-color: $dark-bg-hover-color
+
+  &:active
+    background-color: $dark-bg-active-color
+
+  &.inactive
+    background-color: $dark-bg-active-color
 
 
 .button__text
   white-space: nowrap
 
 
-// .button__icon
+.invisible
+  display: none
+  visibility: 0;
+  width: 0;
+  height: 0;
+
+
+.button__icon
+  & path
+    stroke: black
