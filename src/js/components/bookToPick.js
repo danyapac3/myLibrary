@@ -33,19 +33,23 @@ const template =
 </div>
 `;
 
-export default function render( book, { onAdd = () => {}, isAdded = false }) {
+export default function render( book, booksCollection ) {
+  let isAdded = Array.from(booksCollection).some(({id}) => book.id === id);
   const element = createElementFromTemplate(template, book);
-
   const addNewBookButton = element.querySelector(".book-to-pick__add-book-button");
+  if (isAdded) {
+    addNewBookButton.textContent = "Added";
+  }
+  
   addNewBookButton.classList.toggle('inactive', isAdded);
   addNewBookButton.addEventListener('click', (e) => {
-    if (isAdded) {
-      return;
+    if (!isAdded) {
+      booksCollection.add(book);
+      isAdded = true;
+      addNewBookButton.classList.toggle('inactive', isAdded);
     }
     
-    onAdd();
-    isAdded = true;
-    addNewBookButton.classList.toggle('inactive', isAdded);
+    addNewBookButton.textContent = "Added";
   });
   
   return element;

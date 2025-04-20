@@ -3,11 +3,9 @@ import renderBookInProgress from "@/js/components/bookInProgress";
 import renderBookCompleted from "@/js/components/bookCompleted";
 import renderModalPickBook from "@/js/components/мodalPickBook";
 import { BookCollection } from "@/js/classes/bookCollection";
-import { Book } from "@/js/classes/book"
 
 
 function mountBooks(books = []) {
-  console.log(books);
   const inProgressSectionContainer = document.querySelector('.in-progress-section__items');
   const completedSectionContainer = document.querySelector('.completed-section__items');
 
@@ -27,9 +25,6 @@ function mountBooks(books = []) {
   });
 }
 
-mountBooks();
-
-
 const books = new BookCollection(
   {
     onAdd: () => {
@@ -41,19 +36,22 @@ const books = new BookCollection(
   }
 );
 
-
 const pageElement = document.querySelector('.page');
-const modalPickBook = renderModalPickBook({
-  onAddBook: (book) => {
-    books.add(book)
-  }
-});
-
-
-pageElement.appendChild(modalPickBook);
-
-
 const pickNewBookButton = document.querySelector('.header__add-button');
-pickNewBookButton.addEventListener('click', (e) => {
+const modalPickBook = renderModalPickBook(books);
+
+
+pickNewBookButton.addEventListener('click', () => {
   modalPickBook.showModal();
 });
+pageElement.appendChild(modalPickBook);
+
+mountBooks();
+
+
+
+
+
+
+
+

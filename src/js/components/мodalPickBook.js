@@ -17,7 +17,7 @@ const template =
   </div>
 </dialog>`;
 
-export default function render(events) {
+export default function render(booksCollection) {
   const modal = createElementFromTemplate(template);
   const modalItems = modal.querySelector('.modal-pick-books__items');
 
@@ -44,9 +44,7 @@ export default function render(events) {
     loadMoreButton.classList.toggle('invisible', !(booksLeft > 0));
 
     for (let book of books) {
-      const bookToPick = renderBookToPick(book, {
-        onAdd: () => {events.onAddBook(book)}
-      });
+      const bookToPick = renderBookToPick(book, booksCollection);
       modalItems.removeChild(loadMoreButton);
       modalItems.appendChild(bookToPick);
       modalItems.appendChild(loadMoreButton);

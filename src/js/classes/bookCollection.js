@@ -17,12 +17,12 @@ export class BookCollection {
       }
     });
     this.collection.add(obj);
-    this.onAdd(obj, Array.from(this));
+    this.onAdd(obj);
   }
 
   remove(obj) {
     this.collection.delete(obj)
-    this.onRemove(obj, Array.from(this))
+    this.onRemove(obj)
   }
 
   [Symbol.iterator]() {
