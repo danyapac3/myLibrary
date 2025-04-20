@@ -1,5 +1,4 @@
 import { createElementFromTemplate } from "@/js/utils/templateUtils";
-import { createBook } from "@/js/factories/book";
 import { fetchBooks } from "@/js/booksAPI";
 import renderBookToPick from "@/js/components/bookToPick";
 
@@ -18,7 +17,7 @@ const template =
   </div>
 </dialog>`;
 
-export default function render() {
+export default function render(events) {
   const modal = createElementFromTemplate(template);
   const modalItems = modal.querySelector('.modal-pick-books__items');
 
@@ -26,7 +25,6 @@ export default function render() {
   closeButton.addEventListener('click', (e) => {
     modal.close()
   });
-
 
 
   const loadMoreButton = modalItems.querySelector('.modal-pick-books__load-more-button');
@@ -45,10 +43,10 @@ export default function render() {
     loadMoreButton.textContent = `Load More (${booksLeft} left)`;
     loadMoreButton.classList.toggle('invisible', !(booksLeft > 0));
 
-    console.log(booksLeft);
-    console.log(books);
     for (let book of books) {
-      const bookToPick = renderBookToPick(book);
+      const bookToPick = renderBookToPick(book, {
+        onAdd: () => {events.onAddBook(book)}
+      });
       modalItems.removeChild(loadMoreButton);
       modalItems.appendChild(bookToPick);
       modalItems.appendChild(loadMoreButton);
@@ -61,7 +59,7 @@ export default function render() {
 
   loadMoreButton.addEventListener('click', (e) => {
     if (e.target.classList.contains('inactive')) {
-      return
+      return;
     }
     loadBooks();
   });

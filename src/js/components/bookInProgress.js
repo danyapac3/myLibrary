@@ -97,7 +97,13 @@ export default function render(book) {
     const expandButton = element.querySelector(".book-in-progress__expand-button");
     expandButton.addEventListener('click', (e) => {
       data.isCompleted = true;
-      console.log(data);
     });
+
+    // temporary
+    const cover = element.querySelector('.book-in-progress__cover');
+    cover.addEventListener('click', () => {
+      book.isCompleted = !book.isCompleted;
+      console.log(book);
+    })
   });
 }

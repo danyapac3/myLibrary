@@ -6,10 +6,7 @@ const template =
     <div class="book-to-pick__cover">
       <img src="|[imageSrc]|" width="300" height="400" alt="">
     </div>
-    <div class="book-to-pick__select-book-toggle toggle-button">
-      <input class="toggle-button__checkbox" type="checkbox"  id="check-|[id]|">
-      <label class="toggle-button__label" for="check-|[id]|">Add</label>
-    </div>
+    <div class="book-to-pick__add-book-button button dark">Add Book</div>
   </div>
   <div class="book-to-pick__content">
     <div class="book-to-pick__published info-group">
@@ -36,8 +33,20 @@ const template =
 </div>
 `;
 
-export default function render(book) {
+export default function render( book, { onAdd = () => {}, isAdded = false }) {
   const element = createElementFromTemplate(template, book);
+
+  const addNewBookButton = element.querySelector(".book-to-pick__add-book-button");
+  addNewBookButton.classList.toggle('inactive', isAdded);
+  addNewBookButton.addEventListener('click', (e) => {
+    if (isAdded) {
+      return;
+    }
+    
+    onAdd();
+    isAdded = true;
+    addNewBookButton.classList.toggle('inactive', isAdded);
+  });
   
   return element;
 }

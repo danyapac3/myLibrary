@@ -1,4 +1,4 @@
-import { createBook } from "@/js/factories/book";
+import { Book } from "@/js/classes/book";
 const url = "https://openlibrary.org";
 
 function queryParameter(params = {}) {
@@ -57,7 +57,7 @@ export async function fetchBooks(searchText, limit = 1, offset = 0) {
 
     book.id = work.key.replace('/works/', '');
 
-    books.push(createBook(book));
+    books.push(new Book(book));
   }
 
   return {
