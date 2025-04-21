@@ -27,3 +27,4 @@ import "../sass/components/toggle-button.sass";
 import "../sass/components/book-to-pick.sass";
 import "../sass/components/book-to-edit.sass";
 import "../sass/components/loading-spin.sass";
+import "../sass/components/cover.sass";

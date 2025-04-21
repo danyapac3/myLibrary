@@ -1,4 +1,4 @@
-import "./styles";
+// import "./styles";
 import renderBookInProgress from "@/js/components/bookInProgress";
 import renderBookCompleted from "@/js/components/bookCompleted";
 import renderModalPickBook from "@/js/components/мodalPickBook";
