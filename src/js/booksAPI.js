@@ -34,7 +34,6 @@ export async function fetchBooks(searchText, limit = 1, offset = 0) {
       author: null,
       description: null,
       publishDate: null,
-      category: null,
     };
 
     book.author = doc.author_name ? doc.author_name.join(', ') : 'Unknown';
@@ -52,8 +51,6 @@ export async function fetchBooks(searchText, limit = 1, offset = 0) {
     book.imageSrc = work.covers
       ? `https://covers.openlibrary.org/b/id/${work.covers[0]}-L.jpg`
       :  null;
-
-    book.category = work.subjects ? work.subjects[0] : null;
 
     book.id = work.key.replace('/works/', '');
 

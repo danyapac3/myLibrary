@@ -7,10 +7,9 @@ const template = /*html*/ `<div class="completed-section__item book-completed">
   </div>
     <div class="book-completed__row">
       <div class="book-completed__rate">|[rate]|</div>
-      <div class="book-completed__category">|[category]|</div>
     </div>
-  <div class="book-completed__name">|[title]|</div>
-  <div class="book-completed__author">|[author]|</div>
+    <div class="book-completed__name">|[title]|</div>
+    <div class="book-completed__author">|[author]|</div>
 </div>`;
 
 export default function render(book) {

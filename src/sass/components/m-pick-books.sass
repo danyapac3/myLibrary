@@ -12,7 +12,7 @@
   position: relative
 
   &::backdrop
-    background-color: color.change($primary-gray, $alpha: 90%)
+    background-color: color.change($primary-gray, $alpha: 95%)
     backdrop-filter: blur(15px)
 
   &:not(:open)
@@ -63,12 +63,26 @@
   flex-direction: column
 
 
+.modal-pick-books__always-in-end-box
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.modal-pick-books__nothing-found-message
+  font-size: 16px
+  border-bottom: 1px solid rgb(0 0 0 / .2)
+  color: rgb(0 0 0 / .6)
+  padding-bottom: 10px
+
+.modal-pick-books__loading-spin
+  height: 40px
+  width: 40px
+
+
 .modal-pick-books__load-more-button
   width: fit-content
-  padding: 16px 32px
+  height: 40px
+  padding: 0 32px
   align-self: center
   flex-shrink: 0
   background-color: red
-
-  &:first-child
-    display: none

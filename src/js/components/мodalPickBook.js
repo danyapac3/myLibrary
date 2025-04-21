@@ -12,7 +12,11 @@ const template =
       <img class="search__icon" src="images/search.svg" alt="">
     </div>
     <div class="modal-pick-books__items">
-      <div class="modal-pick-books__load-more-button button dark invisible inactive">Load More</div> 
+      <div class="modal-pick-books__always-in-end-box">
+        <div class="modal-pick-books__load-more-button button dark invisible">Load More</div>
+        <div class="modal-pick-books__nothing-found-message invisible">There is nothing found</div>
+        <div class="modal-pick-books__loading-spin loading-spin invisible"></div>
+      </div>
     </div>
   </div>
 </dialog>`;
@@ -20,22 +24,25 @@ const template =
 export default function render(booksCollection) {
   const modal = createElementFromTemplate(template);
   const modalItems = modal.querySelector('.modal-pick-books__items');
-
   const closeButton = modal.querySelector('.modal-pick-books__close-button');
-  closeButton.addEventListener('click', (e) => {
-    modal.close()
-  });
-
-
+  const endBox = modalItems.querySelector('.modal-pick-books__always-in-end-box');
+  const nothingFoundMessage = modal.querySelector('.modal-pick-books__nothing-found-message');
   const loadMoreButton = modalItems.querySelector('.modal-pick-books__load-more-button');
+  const loadingSpin = modalItems.querySelector('.loading-spin');
   const search = modal.querySelector('.search').querySelector('input');
+ 
   const loadedBooks = [];
   let loadOffset = 0;
   
   async function loadBooks() {
+    nothingFoundMessage.classList.toggle('invisible', true)
     const booksPerLoad = 3;
-    loadMoreButton.classList.toggle('inactive', true);
+    loadMoreButton.classList.toggle('invisible', true);
+    loadingSpin.classList.toggle('invisible', false);
     const { books, booksFoundNumber } = await fetchBooks(search.value, booksPerLoad, loadOffset);
+    if (loadOffset === 0 && booksFoundNumber === 0) {
+      nothingFoundMessage.classList.toggle('invisible', false)
+    } 
     loadOffset += 3;
 
     const booksLeft = booksFoundNumber - booksPerLoad;
@@ -45,14 +52,14 @@ export default function render(booksCollection) {
 
     for (let book of books) {
       const bookToPick = renderBookToPick(book, booksCollection);
-      modalItems.removeChild(loadMoreButton);
+      modalItems.removeChild(endBox);
       modalItems.appendChild(bookToPick);
-      modalItems.appendChild(loadMoreButton);
+      modalItems.appendChild(endBox);
 
       loadedBooks.push(bookToPick); 
     }
 
-    loadMoreButton.classList.toggle('inactive', false);
+    loadingSpin.classList.toggle('invisible', true);
   }
 
   loadMoreButton.addEventListener('click', (e) => {
@@ -65,10 +72,13 @@ export default function render(booksCollection) {
   search.addEventListener('change', (e) => {
     loadOffset = 0;
     loadedBooks.forEach(e => e.remove());
-    loadMoreButton.classList.toggle('invisible', false);
-
+    
     loadBooks();
   });
 
+  closeButton.addEventListener('click', (e) => {
+    modal.close()
+  });
+  
   return modal;
 }

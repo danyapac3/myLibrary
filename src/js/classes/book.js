@@ -6,7 +6,6 @@ function Book(properties = {}) {
   this.currentPage = 0,
   this.rate = 5,
   this.publishDate = null,
-  this.category = null,
   this.id = null,
   this.isCompleted = false;
 

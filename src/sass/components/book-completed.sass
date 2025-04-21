@@ -57,6 +57,20 @@
     aspect-ratio: 3/4
     object-fit: cover
     user-select: none
+    position: relative
+
+    &::before
+      content: ""
+      position: absolute
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+      background-color: black
+
+    &::after
+      content: "Hello"
+
 
   
 .book-completed__row
@@ -80,12 +94,6 @@
     background-repeat: no-repeat
     background-position: center
 
-.book-completed__category
-  opacity: 0.6
-  max-width: 100px
-  text-overflow: ellipsis
-  overflow: hidden
-  white-space: nowrap
 
 .book-completed__name
   grid-column: 1 / -1

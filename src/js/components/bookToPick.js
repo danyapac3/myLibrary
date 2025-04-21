@@ -21,10 +21,6 @@ const template =
       <div class="info-group__title">Author</div>
       <div class="info-group__content">|[author]|</div>
     </div>
-    <div class="book-to-pick__category info-group">
-      <div class="info-group__title">Category</div>
-      <div class="info-group__content">|[category]|</div>
-    </div>
     <div class="book-to-pick__description info-group description">
       <div class="info-group__title">Desctiption</div>
       <div class="info-group__content">|[description]|</div>
