@@ -2,7 +2,7 @@ import { createElementFromTemplate } from "@/js/utils/templateUtils"
 import { findElements } from "@/js/utils/DOMUtils";
 
 const template = /*html*/ `<div class="completed-section__item book-completed">
-  <div class="book-completed__cover">
+  <div class="book-completed__cover cover">
     <img src="|[imageSrc]|" alt="book cover">
   </div>
     <div class="book-completed__row">

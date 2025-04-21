@@ -5,7 +5,7 @@ import { snap } from "@/js/utils/mathUtils";
 export const template = 
 /*html*/ `<div class="in-progress-section__item book-in-progress">
   <div class="book-in-progress__content">
-    <div class="book-in-progress__cover">
+    <div class="book-in-progress__cover cover">
       <img src="|[imageSrc]|" alt="book cover">
     </div>
     <div class="book-in-progress__name info-group">
