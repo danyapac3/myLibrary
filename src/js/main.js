@@ -55,17 +55,17 @@ pageElement.appendChild(modalPickBook);
 
 mountBooks();
 
-//debug
-const debugBook = {
-  "imageSrc": "https://covers.openlibrary.org/b/id/4342323-L.jpg",
-  "title": "The Book of Dragons",
-  "author": "Edith Nesbit",
-  "description": "Eight madcap tales of unpredictable dragons — including one made of ice, another that takes refuge in the General Post Office, and a fire-breathing monster that flies out of an enchanted book and eats an entire soccer team! Marvelous adventure and excitement for make-believers of all ages. hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello ",
-  "currentPage": 0,
-  "rate": 5,
-  "publishDate": 1973,
-  "id": "OL99529W",
-  "isCompleted": true
-}
+// //debug modal-edit-book
+// const debugBook = {
+//   "imageSrc": "https://covers.openlibrary.org/b/id/4342323-L.jpg",
+//   "title": "The Book of Dragons",
+//   "author": "Edith Nesbit",
+//   "description": "Eight madcap tales of unpredictable dragons — including one made of ice, another that takes refuge in the General Post Office, and a fire-breathing monster that flies out of an enchanted book and eats an entire soccer team! Marvelous adventure and excitement for make-believers of all ages. hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello ",
+//   "currentPage": 0,
+//   "rate": 5,
+//   "publishDate": 1973,
+//   "id": "OL99529W",
+//   "isCompleted": true
+// }
 
-modalEditBook.showModalWithBook(debugBook);
+// modalEditBook.showModalWithBook(debugBook);

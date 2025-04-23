@@ -12,6 +12,7 @@ const template =
 export default function render() {
   let bookToEdit = null;
   const element = createElementFromString(template);
+  const closeButton = element.querySelector('.modal-pick-books__close-button');
 
   element.showModalWithBook = (book) => {
     bookToEdit?.remove();
@@ -19,6 +20,10 @@ export default function render() {
     element.append(bookToEdit);
     element.showModal();
   }
+
+  closeButton.addEventListener('click', () => {
+    element.close();
+  });
 
   return element;
 }

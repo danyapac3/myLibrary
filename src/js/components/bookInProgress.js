@@ -1,6 +1,6 @@
-import { createElementFromTemplate } from "@/js/utils/templateUtils"
 import { findElements } from "@/js/utils/DOMUtils";
-import { snap } from "@/js/utils/mathUtils";
+import { createElementFromTemplate } from "@/js/utils/templateUtils";
+import initializeCounter from "@/js/components/virtualCounter";
 
 export const template = 
 /*html*/ `<div class="in-progress-section__item book-in-progress">
@@ -48,51 +48,42 @@ export const template =
 `;
 
 
-export function initializeCounter(counter, data, controlledPropertyName) {
-  const {increaseButton, decreaseButton, input} = findElements(counter, {
-    increaseButton: '.counter__increase-button',
-    decreaseButton: '.counter__decrease-button',
-    input: '.counter__input',
-  });
-
-  input.addEventListener('change', (e) => {
-    const min = Number(e.target.min);
-    const max = Number(e.target.max);
-    const step = Number(e.target.step);
-    const value = Number(e.target.value);
-    const numeric = value;
-    const snapped = snap(numeric, step);
-
-    const validate = (value) => !( 
-      Number.isNaN(value)
-      || value > max
-      || value < min
-    );
-
-    if (validate(snapped)) {
-      data[controlledPropertyName] = snapped;
-    }
-    e.target.value = data[controlledPropertyName];
-  });
-
-  increaseButton.addEventListener('click', (e) => { 
-    input.value =  Number(input.value) + Number(input.step);
-    input.dispatchEvent(new Event("change"));
-  });
-
-  decreaseButton.addEventListener('click', (e) => {
-    input.value =  Number(input.value) - Number(input.step);
-    input.dispatchEvent(new Event("change"));
-  });
-}
-
 export default function render(book) {
   return createElementFromTemplate(template, book, (element, data) => {
-    const pageCounter = (element.querySelector('.book-in-progress__page-counter'));
-    const rateCounter = (element.querySelector('.book-in-progress__rate-counter'));
     
-    initializeCounter(pageCounter, data, 'currentPage');
-    initializeCounter(rateCounter, data, 'rate');
+    {
+      const {input, decreaseButton, increaseButton} = findElements(
+        element.querySelector('.book-in-progress__page-counter')
+        ,{
+          input: ".counter__input",
+          decreaseButton: ".counter__decrease-button",
+          increaseButton: ".counter__increase-button",
+        }
+      );
+  
+      initializeCounter(input, decreaseButton, increaseButton, (updatedValue) => {
+        data.currentPage = updatedValue;
+      });
+    }
+
+    {
+      const {input, decreaseButton, increaseButton} = findElements(
+        element.querySelector('.book-in-progress__rate-counter')
+        ,{
+          input: ".counter__input",
+          decreaseButton: ".counter__decrease-button",
+          increaseButton: ".counter__increase-button",
+        }
+      );
+      
+      initializeCounter(input, decreaseButton, increaseButton, (updatedValue) => {
+        data.rate = updatedValue;
+      }, {
+        min: 0,
+        max: 5,
+        step: 0.1,
+      });
+    }
 
     const expandButton = element.querySelector(".book-in-progress__expand-button");
     expandButton.addEventListener('click', (e) => {
