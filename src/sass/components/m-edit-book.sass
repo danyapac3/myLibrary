@@ -1,23 +1,45 @@
 @use "sass:color"
 
 .modal-edit-book
-  width: 668px
+  display: flex;
+  justify-content: center
+  align-items: center
+  width: 100%
+  height: 100%
   border: none
   outline: none
   background-color: rgb(0 0 0 / .0)
-  overflow: visible
-
-  +to-sm()
-    width: min(80%, 520px)
+  overflow: auto
 
   &::backdrop
-    background-color: color.change($primary-gray, $alpha: 90%)
+    background-color: color.change($primary-gray, $alpha: 95%)
     backdrop-filter: blur(15px)
 
+  &:not(:open)
+    display: none
+
+  +to-xs()
+    align-items: start
+
+
+
 .modal-edit-book__close-button
-  position: absolute
-  right: 0
-  top: 0
+  width: 32px
+  height: 32px
+  background: url("/images/close.svg")
+  background-repeat: no-repeat
+  background-position: center
+  border-radius: 999px
+  transition: 0.1s background
 
 
-// .modal-edit-book__book-to-edit
+.modal-edit-book__book-to-edit
+  width: 668px
+  
+  +to-sm()
+    width: 555px
+
+  +to-xs()
+    padding-top: 100px
+    padding-bottom: 100px
+    width: 350px

@@ -3,6 +3,8 @@
   gap: 20px
   background-color: black
   text-align: center
+  padding: 10px
+  font-size: 13px
 
   +to-sm()
     flex-direction: column
@@ -13,23 +15,28 @@
   opacity: 0.6
   flex-basis: 1
   flex-shrink: 0
+  display: flex
+  flex-direction: column
+  justify-content: center
 
 .counter__controls
   display: flex
-  flex-grow: 1
-  gap: 20px
+  flex-basis: auto
+  gap: 4px
 
   +to-sm
-    gap: 10px
+    gap: 4px
 
 .counter__decrease-button
-  flex-grow: 1
+  width: 20px
+  flex-shrink: 0
 
 .counter__increase-button
-  flex-grow: 1
+  width: 20px
+  flex-shrink: 0
 
 .counter__input
-  width: 33%
+  width: calc(100% - calc(calc(20px * 2) - calc(4px * 2)))
   background: none
   border: none
   color: white

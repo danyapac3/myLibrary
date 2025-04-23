@@ -2,26 +2,30 @@
 import renderBookInProgress from "@/js/components/bookInProgress";
 import renderBookCompleted from "@/js/components/bookCompleted";
 import renderModalPickBook from "@/js/components/мodalPickBook";
+import renderModalEditBook from "@/js/components/modalEditBook";
 import { BookCollection } from "@/js/classes/bookCollection";
 
 
 function mountBooks(books = []) {
-  const inProgressSectionContainer = document.querySelector('.in-progress-section__items');
-  const completedSectionContainer = document.querySelector('.completed-section__items');
+  const inProgressSectionItems = document.querySelector('.in-progress-section__items');
+  const completedSectionItems = document.querySelector('.completed-section__items');
 
   const booksInProgress = books.filter((book) => !book.isCompleted);
   const booksCompleted = books.filter((book) => book.isCompleted);
   
-  inProgressSectionContainer.innerHTML = '';
+  inProgressSectionItems.innerHTML = '';
   booksInProgress.forEach((book) => {
-    const renderedBook =  renderBookInProgress(book)
-    inProgressSectionContainer.appendChild(renderedBook);
+    const renderedBook =  renderBookInProgress(book);
+    inProgressSectionItems.appendChild(renderedBook);
   });
 
-  completedSectionContainer.innerHTML = '';
+  completedSectionItems.innerHTML = '';
   booksCompleted.forEach((book) => {
-    const renderedBook =  renderBookCompleted(book)
-    completedSectionContainer.appendChild(renderedBook);
+    const renderedBook =  renderBookCompleted(book);
+    renderedBook.addEventListener('click', () => {
+      modalEditBook.showModalWithBook(book);
+    });
+    completedSectionItems.appendChild(renderedBook);
   });
 }
 
@@ -39,6 +43,9 @@ const books = new BookCollection(
 const pageElement = document.querySelector('.page');
 const pickNewBookButton = document.querySelector('.header__add-button');
 const modalPickBook = renderModalPickBook(books);
+const modalEditBook = renderModalEditBook();
+
+pageElement.append(modalEditBook);
 
 
 pickNewBookButton.addEventListener('click', () => {
@@ -48,10 +55,17 @@ pageElement.appendChild(modalPickBook);
 
 mountBooks();
 
+//debug
+const debugBook = {
+  "imageSrc": "https://covers.openlibrary.org/b/id/4342323-L.jpg",
+  "title": "The Book of Dragons",
+  "author": "Edith Nesbit",
+  "description": "Eight madcap tales of unpredictable dragons — including one made of ice, another that takes refuge in the General Post Office, and a fire-breathing monster that flies out of an enchanted book and eats an entire soccer team! Marvelous adventure and excitement for make-believers of all ages. hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello ",
+  "currentPage": 0,
+  "rate": 5,
+  "publishDate": 1973,
+  "id": "OL99529W",
+  "isCompleted": true
+}
 
-
-
-
-
-
-
+modalEditBook.showModalWithBook(debugBook);

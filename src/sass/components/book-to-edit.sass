@@ -1,32 +1,26 @@
 .book-to-edit
   display: flex
   gap: 20px
-  align-items: center
-  padding-block: 30px
+  align-items: start
 
-  +to-sm()
+  +to-xs()
     flex-direction: column
 
 
 .book-to-edit__cover
-  display: flex
-  overflow: hidden
-  flex-basis: 210px
+  width: 150px
   flex-shrink: 0
-  aspect-ratio: 3/4
-  align-self: start
-
-  & img
-    width: 100%
-    object-fit: cover
 
   +to-sm()
-    flex-basis: auto
+    width: 100px
+
+  +to-xs()
     width: 100%
+
 
 
 .book-to-edit__content
-  flex-basis: 438px
+  flex-grow: 1
   display: flex
   flex-direction: column
   gap: 10px
@@ -35,27 +29,37 @@
     flex-basis: auto
 
 
-.book-to-edit__row
-  display: flex
-  gap: 10px
-  width: 100%
-
-
-.book-to-edit__pages
-  flex: 1 1 0
-
-
-.book-to-edit__author
-  flex: 1 1 0
-
-
-// .book-to-edit__date
-
-
-// .book-to-edit__language
-
-
 // .book-to-edit__name
 
 
+// .book-to-edit__author
+
+
 // .book-to-edit__description
+
+
+.book-to-edit__interactions
+  display: flex
+  gap: 10px
+  
+  & .counter
+    overflow: hidden
+
+  +to-xs()
+    display: grid
+    grid-template-columns: 1fr 1fr
+
+// .book-to-edit__page-counter
+
+
+// .book-to-edit__rate-counter
+
+
+.book-to-edit__change-completion-state-button
+  white-space: nowrap
+  padding: 10px 20px
+  flex-shrink: 0
+
+  +to-xs()
+    grid-column: 1 / -1
+    height: 50px

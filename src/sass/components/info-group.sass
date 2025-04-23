@@ -35,7 +35,33 @@ $font-size: 13px
   opacity: 0.6
 
 
-// .info-group__content
+.info-group__content
+  display: flex
+  flex-direction: column
+  gap: 4px
+  align-items: start
+
+
+.info-group__text.folded
+  display: -webkit-box
+  width: 100%
+  overflow: hidden
+  position: relative
+  min-height: $line-height * $lines-number * $font-size  
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: 4
+  line-clamp: 4
+  height: $line-height * $lines-number * $font-size
+
+
+.info-group__toggle-text-button
+  text-decoration: underline solid 1px black;
+  cursor: pointer
+  user-select: none
+
+  &:hover
+    text-decoration: none
+
 
 .info-group.description .info-group__content
   display: -webkit-box
@@ -47,6 +73,7 @@ $font-size: 13px
   -webkit-line-clamp: 4
   line-clamp: 4
   height: $line-height * $lines-number * $font-size
+
 
 
 .info-group__expand-button
