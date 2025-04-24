@@ -1,107 +1,55 @@
 .book-in-progress
   display: flex
   align-items: start
-  gap: 12px
+  overflow: hidden
+  gap: 20px
 
   +to-sm()
+    align-items: stretch
     flex-direction: column
 
 
+.book-in-progress__cover
+  height: 230px
+  flex-shrink: 0
+
+  +to-sm()
+    height: auto
 
 .book-in-progress__content
-  display: grid
+  display: flex
+  flex-direction: column
   gap: 10px
-  // grid-template-columns: auto repeat(4, 1fr)
-  grid-template-columns: auto repeat(2, 1fr)
-
-  +to-sm()
-    grid-template-columns: 1fr
-    gap: 0px
-
-  +to-xs()
-    grid-template-columns: auto 1fr
+  overflow: hidden
 
 
-.book-in-progress__cover
-  grid-row: 1 / 5
-  width: 183px
-  flex-shrink: 0
-  
-  +to-sm()
-    grid-row: 1
-    width: 100%
-  
-  +to-xs()
-    grid-column: 1
-    grid-row: 1 / 3
-    width: auto
-    height: 100px
-    align-self: end
+// .book-in-progress__title
 
-
-.book-in-progress__name
-  grid-column: 2 / -1
-  white-space: nowrap
-
-  +to-sm()
-    grid-column: 1
-
-  +to-xs()
-    grid-column: 2
-    grid-row: 1
+.book-in-progress__row
+  gap: 10px
+  display: flex
 
 
 .book-in-progress__author
-  grid-column: span 1
+  flex: 1 1 0px
+  min-width: 0px
 
-  +to-sm()
-    grid-column: 1
-
-  +to-xs()
-    grid-column: 2
-    grid-row: 2
-
-
-
-
-.book-in-progress__pages
-  grid-column: span 1
-
-  +to-sm()
-    grid-column: 1
-
-  +to-xs()
-    grid-column: 1 / -1
-
+.book-in-progress__published
+  flex: 1 1 0px
+  min-width: 0px
 
 
 .book-in-progress__desctioption
-  grid-column: 2 / -1
-
-  +to-sm()
-    grid-column: 1
-  
-  +to-xs()
-    grid-column: 1 / -1
-
+  line-height: 1.4
 
 
 .book-in-progress__interactions
-  grid-column: 2 / -1
-  gap: 10px
   display: flex
-  grid-template-columns: 1fr 1fr
+  gap: 10px
 
   +to-sm()
-    grid-column: 1
     display: grid
     grid-template-columns: 1fr 1fr
-    grid-template-rows: auto auto
-    margin-top: 10px
-  
-  +to-xs()
-    grid-column: 1 / -1
-
 
 .book-in-progress__page-counter
   padding: 10px
@@ -112,16 +60,10 @@
   padding: 10px
   flex: 1 1 189.5px
 
- 
+
 .book-in-progress__expand-button
   padding: 10px 20px
-  flex: 1 0 66px
+  flex: 1 0 78px
 
   +to-sm()
     grid-column: 1 / -1
-
-
-.book-in-progress__published
-  +to-xs()
-    grid-column: 1 / -1
-

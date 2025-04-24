@@ -1,32 +1,19 @@
-$line-height: 1.15
+$line-height: 1.4
 $lines-number: 4
 $font-size: 13px
 
 
 .info-group
   font-size: 13px
-  line-height: $line-height
   padding: 10px 10px
   display: flex
   gap: 20px
   border-bottom: hsl(0 0% 80%) solid 1px
   
   +to-sm()
-    &:not(.short)
-      flex-direction: column
-      gap: 4px
-      padding: 8px 10px
-  
-  +to-xs
     flex-direction: column
     gap: 4px
     padding: 8px 10px
-
-  &.short
-    gap: 8px
-
-  &.short .info-group__title
-    width: auto
 
 
 .info-group__title
@@ -36,22 +23,28 @@ $font-size: 13px
 
 
 .info-group__content
-  display: flex
-  flex-direction: column
-  gap: 4px
-  align-items: start
-
-
-.info-group__text.folded
-  display: -webkit-box
-  width: 100%
   overflow: hidden
-  position: relative
-  min-height: $line-height * $lines-number * $font-size  
-  -webkit-box-orient: vertical
-  -webkit-line-clamp: 4
-  line-clamp: 4
-  height: $line-height * $lines-number * $font-size
+
+.info-group__line
+  white-space: nowrap
+  overflow: hidden
+  min-width: 0px
+  text-overflow: ellipsis
+
+
+.info-group__text
+  word-break: break-all
+
+  &.folded
+    display: -webkit-box
+    width: 100%
+    overflow: hidden
+    position: relative
+    min-height: $line-height * $lines-number * $font-size  
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 4
+    line-clamp: 4
+    height: $line-height * $lines-number * $font-size
 
 
 .info-group__toggle-text-button
@@ -64,6 +57,7 @@ $font-size: 13px
 
 
 .info-group.description .info-group__content
+  line-height: $line-height
   display: -webkit-box
   width: 100%
   overflow: hidden

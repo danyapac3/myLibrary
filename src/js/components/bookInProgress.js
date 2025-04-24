@@ -4,25 +4,27 @@ import initializeCounter from "@/js/components/virtualCounter";
 
 export const template = 
 /*html*/ `<div class="in-progress-section__item book-in-progress">
+  <div class="book-in-progress__cover cover">
+    <img src="|[imageSrc]|" alt="book cover">
+  </div>
   <div class="book-in-progress__content">
-    <div class="book-in-progress__cover cover">
-      <img src="|[imageSrc]|" alt="book cover">
-    </div>
-    <div class="book-in-progress__name info-group">
+    <div class="book-in-progress__title info-group">
       <div class="info-group__title">Title</div>
-      <div class="info-group__content">|[title]|</div>
+      <div class="info-group__content"><div class="info-group__line">|[title]|</div></div>
     </div>
-    <div class="book-in-progress__author info-group">
-      <div class="info-group__title">Author</div>
-      <div class="info-group__content">|[author]|</div>
+    <div class="book-in-progress__row">
+      <div class="book-in-progress__author info-group">
+        <div class="info-group__title">Author</div>
+        <div class="info-group__content"><div class="info-group__line">|[author]|</div></div>
+      </div>
+      <div class="book-in-progress__published info-group">
+        <div class="info-group__title">Published</div>
+        <div class="info-group__content"><div class="info-group__line">|[publishDate]|</div></div>
+      </div>
     </div>
-    <div class="book-in-progress__published info-group">
-      <div class="info-group__title">Published</div>
-      <div class="info-group__content">|[publishDate]|</div>
-    </div>
-    <div class="book-in-progress__desctioption info-group description">
+    <div class="book-in-progress__desctioption info-group">
       <div class="info-group__title">Description</div>
-      <div class="info-group__content">|[description]|</div>
+      <div class="info-group__content"><div class="info-group__text folded">|[description]|</div></div>
     </div>
     <div class="book-in-progress__interactions">
       <div class="book-in-progress__page-counter counter">

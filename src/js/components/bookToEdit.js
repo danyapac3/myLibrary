@@ -9,12 +9,12 @@ const template =
   <div class="book-to-edit__content">
     <div class="book-to-edit__name info-group">
       <div class="info-group__title">Name</div>
-      <div class="info-group__content">|[title]|</div>
+      <div class="info-group__content"><div class="info-group__line">|[title]|</div></div>
     </div>
 
     <div class="book-to-edit__author info-group">
       <div class="info-group__title">Author</div>
-      <div class="info-group__content">|[author]|</div>
+      <div class="info-group__content"><div class="info-group__line">|[author]|</div></div>
     </div>
 
     <div class="book-to-edit__description info-group">

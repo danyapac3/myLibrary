@@ -11,19 +11,19 @@ const template =
   <div class="book-to-pick__content">
     <div class="book-to-pick__published info-group">
       <div class="info-group__title">Date:</div>
-      <div class="info-group__content">|[publishDate]|</div>
+      <div class="info-group__content"><div class="info-group__line">|[publishDate]|</div></div>
     </div>
     <div class="book-to-pick__name info-group">
       <div class="info-group__title">Name</div>
-      <div class="info-group__content">|[title]|</div>
+      <div class="info-group__content"><div class="info-group__line">|[title]|</div></div>
     </div>
     <div class="book-to-pick__author info-group">
       <div class="info-group__title">Author</div>
-      <div class="info-group__content">|[author]|</div>
+      <div class="info-group__content"><div class="info-group__line">|[author]|</div></div>
     </div>
     <div class="book-to-pick__description info-group description">
       <div class="info-group__title">Desctiption</div>
-      <div class="info-group__content">|[description]|</div>
+      <div class="info-group__content"><div class="info-group__text">|[description]|</div></div>
     </div>
   </div>
 </div>
