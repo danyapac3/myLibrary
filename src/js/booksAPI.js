@@ -49,7 +49,7 @@ export async function fetchBooks(searchText, limit = 1, offset = 0) {
 
     book.imageSrc = work.covers
       ? `https://covers.openlibrary.org/b/id/${work.covers[0]}-L.jpg`
-      :  '/images/fallback.png';
+      :  'images/fallback.png';
 
     book.id = work.key.replace('/works/', '');
 
