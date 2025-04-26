@@ -1,0 +1,43 @@
+.toggle
+  background-color: black
+  display: flex
+  gap: 20px
+  align-items: center
+
+  +to-sm()
+    gap: 8px
+
+// .dark 
+
+
+.toggle__label
+  min-width: 0px
+  color: rgb(255 255 255 / 0.6)
+  user-select: none
+  cursor: pointer
+
+.toggle__checkbox
+  flex-shrink: 0
+  width: 15px
+  aspect-ratio: 1/1
+  background-color: #fff
+  appearance: none
+  position: relative
+  cursor: pointer
+
+  &::after
+    content: ''
+    position: absolute
+    width: 10px
+    height: 10px
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    background-color: rgb(0 0 0 / 0)
+    transition: background-color 0.1s
+  
+  &:hover::after
+    background-color: rgb(0 0 0 / 0.2);
+  
+  &:checked::after
+    background-color: rgb(0 0 0); 

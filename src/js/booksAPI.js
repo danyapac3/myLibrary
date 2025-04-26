@@ -41,7 +41,6 @@ export async function fetchBooks(searchText, limit = 1, offset = 0) {
     book.publishDate = doc.first_publish_year;
 
     const workUrl = `${url}${doc.key}.json?fields=description`;
-
     const work = await fetch(workUrl)
       .then(r => r.json());
     book.description = typeof work.description === 'object'

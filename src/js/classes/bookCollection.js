@@ -11,7 +11,6 @@ export class BookCollection {
     Object.defineProperty(obj, 'isCompleted', {
       get: () => _isCompleted,
       set: (value) => {
-        console.log('right');
         _isCompleted = value;
         this.isCompletedHandler();
       }

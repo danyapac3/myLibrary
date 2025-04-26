@@ -1,4 +1,6 @@
+import initializeCounter from '@/js/components/virtualCounter';
 import { createElementFromTemplate } from '@/js/utils/templateUtils';
+import { findElements } from '@/js/utils/DOMUtils';
 
 const template = 
 /*html*/`
@@ -21,7 +23,7 @@ const template =
       <div class="info-group__title">Desctiption</div>
       <div class="info-group__content">
         <div class="info-group__text folded">|[description]|</div>
-        <div class="info-group__toggle-text-button">show more</div>
+        <div class="info-group__show-more-button">show more</div>
       </div>
     </div>
 
@@ -42,14 +44,60 @@ const template =
           <button class="counter__increase-button button dark">+</button>
         </div>
       </div>
-      <button class="book-to-edit__change-completion-state-button button dark">Mark as read</button>
+      <div class="book-to-edit__toggle-state toggle dark">
+        <label class="toggle__label" for="state-toggle-|[id]|">Completed:</label>
+        <input class="toggle__checkbox" type="checkbox" id ="state-toggle-|[id]|">
+      </div>
     </div>
   </div>
 </div>
 `;
 
-export default function render(data) {
-  const element = createElementFromTemplate(template, data)
+function setupCounter(element, counterSelector, data, key, options = {}) {
+  const {input, decreaseButton, increaseButton} = findElements(
+    element.querySelector(counterSelector)
+    ,{
+      input: ".counter__input",
+      decreaseButton: ".counter__decrease-button",
+      increaseButton: ".counter__increase-button",
+    }
+  );
 
-  return element;
+  initializeCounter(input, decreaseButton, increaseButton, (updatedValue) => {
+    data[key] = updatedValue;
+  }, options);
+}
+
+export default function render(book) {
+  return createElementFromTemplate(template, book, (element, data) => {
+    setupCounter(element, '.book-to-edit__page-counter', data ,'currentPage');
+  
+    setupCounter(element,'.book-to-edit__rate-counter', data, 'rate',
+      {
+        min: 0,
+        max: 5,
+        step: 0.1,
+      }
+    );
+
+    const description = element.querySelector(".book-to-edit__description .info-group__text");
+    const showMoreButton = element.querySelector('.info-group__show-more-button');
+    showMoreButton.addEventListener('click', (e) => {
+      const isFolded = description.classList.contains('folded');
+      showMoreButton.textContent = isFolded ? "Hide" : "Show more";
+      description.classList.toggle('folded', !isFolded);
+    });
+
+    const toggleCompleteInput = element.querySelector('.book-to-edit__toggle-state input');
+    toggleCompleteInput.checked = data.isCompleted;
+    toggleCompleteInput.addEventListener('change', (e) => {
+      const { checked } = e.target;
+      data.isCompleted = checked; 
+      if( checked ) {
+
+      } else {
+
+      }
+    });
+  });
 }

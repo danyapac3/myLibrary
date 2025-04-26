@@ -3,7 +3,7 @@ import { createElementFromTemplate } from "@/js/utils/templateUtils";
 const template = 
 /*html*/ `<div class="modal-pick-books__book-to-pick book-to-pick">
   <div class="book-to-pick__left-side">
-    <div class="book-to-pick__cover">
+    <div class="book-to-pick__cover cover">
       <img src="|[imageSrc]|" width="300" height="400" alt="">
     </div>
     <div class="book-to-pick__add-book-button button dark">Add Book</div>
@@ -23,7 +23,7 @@ const template =
     </div>
     <div class="book-to-pick__description info-group description">
       <div class="info-group__title">Desctiption</div>
-      <div class="info-group__content"><div class="info-group__text">|[description]|</div></div>
+      <div class="info-group__content"><div class="info-group__text folded">|[description]|</div></div>
     </div>
   </div>
 </div>

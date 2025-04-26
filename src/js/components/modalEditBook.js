@@ -5,14 +5,14 @@ import renderBookToEdit from '@/js/components/bookToEdit';
 const template = 
 /*html*/ `
 <dialog class="page__modal-edit-book modal-edit-book">
-  <div class="modal-pick-books__close-button"></div>
+  <div class="modal-edit-book__close-button"></div>
 </dialog>`;
 
 
 export default function render() {
   let bookToEdit = null;
   const element = createElementFromString(template);
-  const closeButton = element.querySelector('.modal-pick-books__close-button');
+  const closeButton = element.querySelector('.modal-edit-book__close-button');
 
   element.showModalWithBook = (book) => {
     bookToEdit?.remove();

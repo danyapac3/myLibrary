@@ -21,7 +21,7 @@ import "../sass/components/info-group.sass";
 import "../sass/components/select.sass";
 import "../sass/components/search.sass";
 import "../sass/components/button.sass";
-import "../sass/components/toggle-button.sass";
+import "../sass/components/toggle.sass";
 import "../sass/components/book-in-progress.sass";
 import "../sass/components/book-completed.sass";
 import "../sass/components/book-to-pick.sass";

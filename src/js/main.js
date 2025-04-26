@@ -15,7 +15,9 @@ function mountBooks(books = []) {
   
   inProgressSectionItems.innerHTML = '';
   booksInProgress.forEach((book) => {
-    const renderedBook =  renderBookInProgress(book);
+    const renderedBook =  renderBookInProgress(book, () => {
+      modalEditBook.showModalWithBook(book);
+    });
     inProgressSectionItems.appendChild(renderedBook);
   });
 
@@ -55,7 +57,8 @@ pageElement.appendChild(modalPickBook);
 
 mountBooks();
 
-// //debug modal-edit-book
+//debug modal-edit-book
+
 // const debugBook = {
 //   "imageSrc": "https://covers.openlibrary.org/b/id/4342323-L.jpg",
 //   "title": "The Book of Dragons",

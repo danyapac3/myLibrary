@@ -3,7 +3,7 @@
 .modal-edit-book
   display: flex;
   justify-content: center
-  align-items: center
+  align-items: start
   width: 100%
   height: 100%
   border: none
@@ -22,8 +22,10 @@
     align-items: start
 
 
-
 .modal-edit-book__close-button
+  right: 30px
+  top: 30px
+  position: absolute
   width: 32px
   height: 32px
   background: url("/images/close.svg")
@@ -32,14 +34,17 @@
   border-radius: 999px
   transition: 0.1s background
 
+  +to-sm()
+
 
 .modal-edit-book__book-to-edit
+  padding-top: 16.666667svh // 160/960
   width: 668px
   
   +to-sm()
     width: 555px
 
   +to-xs()
-    padding-top: 100px
-    padding-bottom: 100px
+    padding-top: 6.25svh // 60/960
+    padding-bottom: 6.25svh // 60/960
     width: 350px

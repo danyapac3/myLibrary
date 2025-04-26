@@ -22,7 +22,7 @@ export const template =
         <div class="info-group__content"><div class="info-group__line">|[publishDate]|</div></div>
       </div>
     </div>
-    <div class="book-in-progress__desctioption info-group">
+    <div class="book-in-progress__description info-group">
       <div class="info-group__title">Description</div>
       <div class="info-group__content"><div class="info-group__text folded">|[description]|</div></div>
     </div>
@@ -50,53 +50,38 @@ export const template =
 `;
 
 
-export default function render(book) {
+function setupCounter(element, counterSelector, data, key, options = {}) {
+  const {input, decreaseButton, increaseButton} = findElements(
+    element.querySelector(counterSelector)
+    ,{
+      input: ".counter__input",
+      decreaseButton: ".counter__decrease-button",
+      increaseButton: ".counter__increase-button",
+    }
+  );
+
+  initializeCounter(input, decreaseButton, increaseButton, (updatedValue) => {
+    data[key] = updatedValue;
+  }, options);
+}
+
+
+export default function render(book, onExpand = () => {}) {
   return createElementFromTemplate(template, book, (element, data) => {
     
-    {
-      const {input, decreaseButton, increaseButton} = findElements(
-        element.querySelector('.book-in-progress__page-counter')
-        ,{
-          input: ".counter__input",
-          decreaseButton: ".counter__decrease-button",
-          increaseButton: ".counter__increase-button",
-        }
-      );
-  
-      initializeCounter(input, decreaseButton, increaseButton, (updatedValue) => {
-        data.currentPage = updatedValue;
-      });
-    }
+    // page-counter
+    setupCounter(element, '.book-in-progress__page-counter', data ,'currentPage');
 
-    {
-      const {input, decreaseButton, increaseButton} = findElements(
-        element.querySelector('.book-in-progress__rate-counter')
-        ,{
-          input: ".counter__input",
-          decreaseButton: ".counter__decrease-button",
-          increaseButton: ".counter__increase-button",
-        }
-      );
-      
-      initializeCounter(input, decreaseButton, increaseButton, (updatedValue) => {
-        data.rate = updatedValue;
-      }, {
+    // rate-counter
+    setupCounter(element,'.book-in-progress__rate-counter', data, 'rate',
+      {
         min: 0,
         max: 5,
         step: 0.1,
-      });
-    }
+      }
+    );
 
     const expandButton = element.querySelector(".book-in-progress__expand-button");
-    expandButton.addEventListener('click', (e) => {
-      data.isCompleted = true;
-    });
-
-    // temporary
-    const cover = element.querySelector('.book-in-progress__cover');
-    cover.addEventListener('click', () => {
-      book.isCompleted = !book.isCompleted;
-      console.log(book);
-    })
+    expandButton.addEventListener('click', onExpand);
   });
 }
