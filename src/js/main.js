@@ -4,40 +4,42 @@ import renderBookCompleted from "@/js/components/bookCompleted";
 import renderModalPickBook from "@/js/components/мodalPickBook";
 import renderModalEditBook from "@/js/components/modalEditBook";
 import { BookCollection } from "@/js/classes/bookCollection";
+import { findElements } from "@/js/utils/DOMUtils";
 
 
-function mountBooks(books = []) {
-  const inProgressSectionItems = document.querySelector('.in-progress-section__items');
-  const completedSectionItems = document.querySelector('.completed-section__items');
+function mountBooks(books, sectionSelector, renderFunction) {
+  const sectionCounter = document.querySelector(`${sectionSelector} .section-header__number`);
+  const sectionItems = document.querySelector(`${sectionSelector}__items`);
+
+  sectionCounter.textContent = `(${books.length})`;
+
+  sectionItems.innerHTML = '';
+  books.forEach((book) => {
+    const renderedBook = renderFunction(book, () => {
+      modalEditBook.showModalWithBook(book)
+    });
+    sectionItems.appendChild(renderedBook);
+  });
+}
+
+function renderBooks(books = []) {
+  const booksInLibraryCounter = document.querySelector('.header__statistics-item span');
+  booksInLibraryCounter.textContent = books.length;
 
   const booksInProgress = books.filter((book) => !book.isCompleted);
   const booksCompleted = books.filter((book) => book.isCompleted);
-  
-  inProgressSectionItems.innerHTML = '';
-  booksInProgress.forEach((book) => {
-    const renderedBook =  renderBookInProgress(book, () => {
-      modalEditBook.showModalWithBook(book);
-    });
-    inProgressSectionItems.appendChild(renderedBook);
-  });
 
-  completedSectionItems.innerHTML = '';
-  booksCompleted.forEach((book) => {
-    const renderedBook =  renderBookCompleted(book);
-    renderedBook.addEventListener('click', () => {
-      modalEditBook.showModalWithBook(book);
-    });
-    completedSectionItems.appendChild(renderedBook);
-  });
+  mountBooks(booksInProgress, '.in-progress-section', renderBookInProgress);
+  mountBooks(booksCompleted, '.completed-section', renderBookCompleted);
 }
 
 const books = new BookCollection(
   {
     onAdd: () => {
-      mountBooks(Array.from(books))
+      renderBooks(Array.from(books))
     },
     isCompletedHandler: () => {
-      mountBooks(Array.from(books));
+      renderBooks(Array.from(books));
     }
   }
 );
@@ -47,7 +49,8 @@ const pickNewBookButton = document.querySelector('.header__add-button');
 const modalPickBook = renderModalPickBook(books);
 const modalEditBook = renderModalEditBook();
 
-pageElement.append(modalEditBook);
+
+pageElement.appendChild(modalEditBook);
 
 
 pickNewBookButton.addEventListener('click', () => {
@@ -55,20 +58,4 @@ pickNewBookButton.addEventListener('click', () => {
 });
 pageElement.appendChild(modalPickBook);
 
-mountBooks();
-
-//debug modal-edit-book
-
-// const debugBook = {
-//   "imageSrc": "https://covers.openlibrary.org/b/id/4342323-L.jpg",
-//   "title": "The Book of Dragons",
-//   "author": "Edith Nesbit",
-//   "description": "Eight madcap tales of unpredictable dragons — including one made of ice, another that takes refuge in the General Post Office, and a fire-breathing monster that flies out of an enchanted book and eats an entire soccer team! Marvelous adventure and excitement for make-believers of all ages. hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello ",
-//   "currentPage": 0,
-//   "rate": 5,
-//   "publishDate": 1973,
-//   "id": "OL99529W",
-//   "isCompleted": true
-// }
-
-// modalEditBook.showModalWithBook(debugBook);
+renderBooks(Array.from(books));

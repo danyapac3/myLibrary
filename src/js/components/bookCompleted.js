@@ -12,6 +12,9 @@ const template = /*html*/ `<div class="completed-section__item book-completed">
     <div class="book-completed__author">|[author]|</div>
 </div>`;
 
-export default function render(book) {
-  return createElementFromTemplate(template, book, (element, data) => {});
+export default function render(book, onExpand = () => {}) {
+  return createElementFromTemplate(template, book, (element, data) => {
+    const cover = element.querySelector('.book-completed__cover');
+    cover.addEventListener('click', onExpand);
+  });
 }
