@@ -93,11 +93,6 @@ export default function render(book) {
     toggleCompleteInput.addEventListener('change', (e) => {
       const { checked } = e.target;
       data.isCompleted = checked; 
-      if( checked ) {
-
-      } else {
-
-      }
     });
   });
 }

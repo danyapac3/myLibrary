@@ -85,9 +85,9 @@ modalEditBook.addEventListener('close', () => {
   renderBooks(Array.from(books));
 });
 
-completedSearchBarInput.addEventListener('change', () => {
+completedSearchBarInput.addEventListener('input', debounceDecorator(() => {
   renderBooksCompleted(Array.from(books));
-});
+}, 700));
 
 pageElement.appendChild(modalEditBook);
 
@@ -98,3 +98,13 @@ pickNewBookButton.addEventListener('click', () => {
 pageElement.appendChild(modalPickBook);
 
 renderBooks(Array.from(books));
+
+
+function debounceDecorator (fn, timeout) {
+  let timeoutID = 0;
+
+  return () => {
+    clearTimeout(timeoutID);
+    timeoutID = setTimeout(fn, timeout);
+  }
+}
