@@ -4,7 +4,16 @@ import renderBookCompleted from "@/js/components/bookCompleted";
 import renderModalPickBook from "@/js/components/мodalPickBook";
 import renderModalEditBook from "@/js/components/modalEditBook";
 import { BookCollection } from "@/js/classes/bookCollection";
-import { findElements } from "@/js/utils/DOMUtils";
+
+const booksStorage = {
+  storageKey: 'books',
+  save(books) {
+    localStorage.setItem(this.storageKey, books);
+  },
+  load() {
+    return localStorage.getItem(this.storageKey) || "";
+  }
+}
 
 
 function mountBooks(books, sectionSelector, renderFunction) {
@@ -22,27 +31,49 @@ function mountBooks(books, sectionSelector, renderFunction) {
   });
 }
 
-function renderBooks(books = []) {
-  const booksInLibraryCounter = document.querySelector('.header__statistics-item span');
-  booksInLibraryCounter.textContent = books.length;
-
+function renderBooksInProgress(books) {
   const booksInProgress = books.filter((book) => !book.isCompleted);
-  const booksCompleted = books.filter((book) => book.isCompleted);
-
   mountBooks(booksInProgress, '.in-progress-section', renderBookInProgress);
+}
+
+function renderBooksCompleted(books) {
+  function filterBooksBySearch(books, searchQuery) {
+    books.filter(({title, author, description}) => {
+      return (
+        title.includes(searchQuery)
+        || author.includes(searchQuery)
+        || description.includes(searchQuery)
+      );
+    });
+  }
+
+  const booksCompleted = books.filter((book) => book.isCompleted);
   mountBooks(booksCompleted, '.completed-section', renderBookCompleted);
 }
 
-const books = new BookCollection(
-  {
-    onAdd: () => {
-      renderBooks(Array.from(books))
+function renderBooks(books) {
+  const booksInLibraryCounter = document.querySelector('.header__statistics-item span');
+  booksInLibraryCounter.textContent = books.length;
+
+  renderBooksInProgress(books);
+  renderBooksCompleted(books);
+}
+
+const books = BookCollection.createFromString(
+  booksStorage.load()
+  ,{
+    onUpdate () {
+      booksStorage.save(books.stringified());
+      console.log('onUpdate');
     },
-    isCompletedHandler: () => {
+    onUpgrade() {
+      booksStorage.save(books.stringified());
       renderBooks(Array.from(books));
+      console.log('onUpgrade');
     }
   }
 );
+
 
 const pageElement = document.querySelector('.page');
 const pickNewBookButton = document.querySelector('.header__add-button');

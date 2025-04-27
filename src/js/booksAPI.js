@@ -47,7 +47,7 @@ export async function fetchBooks(searchText, limit = 1, offset = 0) {
       ? work.description.value
       : work.description || 'There is no description for this book';
 
-    book.imageSrc = work.covers
+    book.imageSrc = work.covers && work.covers[0] !== -1
       ? `https://covers.openlibrary.org/b/id/${work.covers[0]}-L.jpg`
       :  'images/fallback.png';
 
