@@ -38,17 +38,19 @@ function renderBooksInProgress(books) {
 
 function renderBooksCompleted(books) {
   function filterBooksBySearch(books, searchQuery) {
-    books.filter(({title, author, description}) => {
-      return (
-        title.includes(searchQuery)
-        || author.includes(searchQuery)
-        || description.includes(searchQuery)
+    if (searchQuery === '') return books;
+    return books.filter(({title, author, description}) => {
+      return  (
+        title.toLowerCase().includes(searchQuery.toLowerCase())
+        || author.toLowerCase().includes(searchQuery.toLowerCase())
+        || description.toLowerCase().includes(searchQuery.toLowerCase())
       );
     });
   }
 
   const booksCompleted = books.filter((book) => book.isCompleted);
-  mountBooks(booksCompleted, '.completed-section', renderBookCompleted);
+  const booksFound = filterBooksBySearch(booksCompleted, completedSearchBarInput.value);
+  mountBooks(booksFound, '.completed-section', renderBookCompleted);
 }
 
 function renderBooks(books) {
@@ -64,12 +66,10 @@ const books = BookCollection.createFromString(
   ,{
     onUpdate () {
       booksStorage.save(books.stringified());
-      console.log('onUpdate');
     },
     onUpgrade() {
       booksStorage.save(books.stringified());
       renderBooks(Array.from(books));
-      console.log('onUpgrade');
     }
   }
 );
@@ -79,7 +79,15 @@ const pageElement = document.querySelector('.page');
 const pickNewBookButton = document.querySelector('.header__add-button');
 const modalPickBook = renderModalPickBook(books);
 const modalEditBook = renderModalEditBook();
+const completedSearchBarInput = document.querySelector('.completed-section .section-header__search input');
 
+modalEditBook.addEventListener('close', () => {
+  renderBooks(Array.from(books));
+});
+
+completedSearchBarInput.addEventListener('change', () => {
+  renderBooksCompleted(Array.from(books));
+});
 
 pageElement.appendChild(modalEditBook);
 

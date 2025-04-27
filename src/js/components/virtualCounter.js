@@ -47,13 +47,17 @@ export default function initializeCounter(
     }
   });
 
+  function updateValue() {
+    input.dispatchEvent(new Event("change"));
+  }
+
   increaseButton.addEventListener('click', () => { 
     input.value =  Number(input.value) + Number(step);
-    input.dispatchEvent(new Event("change"));
+    updateValue();
   });
 
   decreaseButton.addEventListener('click', () => {
     input.value =  Number(input.value) - Number(step);
-    input.dispatchEvent(new Event("change"));
+    updateValue();
   });
 }
