@@ -29,8 +29,8 @@ export class BookCollection {
   }
 
   add(book) {
-    setBookProxy(book, this.onUpgrade, this.onUpdate);
-    this.collection.add(book);
+    const proxied = setBookProxy(book, this.onUpgrade, this.onUpdate);
+    this.collection.add(proxied);
     this.onUpgrade();
   }
 
