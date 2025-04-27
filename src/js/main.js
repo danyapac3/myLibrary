@@ -4,6 +4,7 @@ import renderBookCompleted from "@/js/components/bookCompleted";
 import renderModalPickBook from "@/js/components/мodalPickBook";
 import renderModalEditBook from "@/js/components/modalEditBook";
 import { BookCollection } from "@/js/classes/bookCollection";
+import debounceDecorator from "@/js/utils/debounce";
 
 const booksStorage = {
   storageKey: 'books',
@@ -98,13 +99,3 @@ pickNewBookButton.addEventListener('click', () => {
 pageElement.appendChild(modalPickBook);
 
 renderBooks(Array.from(books));
-
-
-function debounceDecorator (fn, timeout) {
-  let timeoutID = 0;
-
-  return () => {
-    clearTimeout(timeoutID);
-    timeoutID = setTimeout(fn, timeout);
-  }
-}

@@ -31,35 +31,49 @@ export default function render(booksCollection) {
   const loadingSpin = modalItems.querySelector('.loading-spin');
   const search = modal.querySelector('.search').querySelector('input');
  
-  const loadedBooks = [];
+  let loadedBooks = [];
   let loadOffset = 0;
-  
-  async function loadBooks() {
-    nothingFoundMessage.classList.toggle('invisible', true)
-    const booksPerLoad = 3;
-    loadMoreButton.classList.toggle('invisible', true);
-    loadingSpin.classList.toggle('invisible', false);
-    const { books, booksFoundNumber } = await fetchBooks(search.value, booksPerLoad, loadOffset);
-    if (loadOffset === 0 && booksFoundNumber === 0) {
-      nothingFoundMessage.classList.toggle('invisible', false)
-    } 
-    loadOffset += 3;
+  let booksPerLoad = 3;
+  let currentLoadingController = null;
 
-    const booksLeft = booksFoundNumber - booksPerLoad;
+  function interruptLoading() {
+    loadOffset = 0;
+    currentLoadingController?.abort();
+  }
 
-    loadMoreButton.textContent = `Load More (${booksLeft} left)`;
-    loadMoreButton.classList.toggle('invisible', !(booksLeft > 0));
-
-    for (let book of books) {
-      const bookToPick = renderBookToPick(book, booksCollection);
-      modalItems.removeChild(endBox);
-      modalItems.appendChild(bookToPick);
-      modalItems.appendChild(endBox);
-
-      loadedBooks.push(bookToPick); 
-    }
-
+  function clearSearch() {
     loadingSpin.classList.toggle('invisible', true);
+    loadedBooks.forEach(e => e.remove());
+    loadMoreButton.classList.toggle('invisible', true);
+    // loadedBooks = [];
+  }
+
+  function loadBooks() {
+    nothingFoundMessage.classList.toggle('invisible', true)
+    loadingSpin.classList.toggle('invisible', false);
+
+    currentLoadingController = fetchBooks(search.value, booksPerLoad, loadOffset, (books, booksFoundNumber) => {
+      if (loadOffset === 0 && booksFoundNumber === 0) {
+        nothingFoundMessage.classList.toggle('invisible', false)
+      } 
+      loadOffset += booksPerLoad;
+  
+      const booksLeft = booksFoundNumber - booksPerLoad;
+  
+      loadMoreButton.textContent = `Load More (${booksLeft} left)`;
+      loadMoreButton.classList.toggle('invisible', !(booksLeft > 0));
+
+      for (let book of books) {
+        const bookToPick = renderBookToPick(book, booksCollection);
+        modalItems.removeChild(endBox);
+        modalItems.appendChild(bookToPick);
+        modalItems.appendChild(endBox);
+  
+        loadedBooks.push(bookToPick); 
+      }
+  
+      loadingSpin.classList.toggle('invisible', true);
+    });
   }
 
   loadMoreButton.addEventListener('click', (e) => {
@@ -70,15 +84,19 @@ export default function render(booksCollection) {
   });
   
   search.addEventListener('change', (e) => {
-    loadOffset = 0;
-    loadedBooks.forEach(e => e.remove());
-    
+    interruptLoading();
+    clearSearch()
     loadBooks();
   });
 
   closeButton.addEventListener('click', (e) => {
     modal.close()
   });
+  
+  modal.addEventListener('close', (e) => {
+    interruptLoading();
+    clearSearch()
+  })
   
   return modal;
 }
