@@ -1,5 +1,6 @@
 import { createElementFromTemplate } from "@/js/utils/templateUtils";
 import { fetchBooks } from "@/js/booksAPI";
+import debounceDecorator from "@/js/utils/debounce";
 import renderBookToPick from "@/js/components/bookToPick";
 
 
@@ -39,42 +40,52 @@ export default function render(booksCollection) {
   function interruptLoading() {
     loadOffset = 0;
     currentLoadingController?.abort();
+    loadingSpin.classList.toggle('invisible', true);
   }
 
   function clearSearch() {
     loadingSpin.classList.toggle('invisible', true);
-    loadedBooks.forEach(e => e.remove());
     loadMoreButton.classList.toggle('invisible', true);
-    // loadedBooks = [];
+    loadedBooks.forEach(e => e.remove());
   }
-
-  function loadBooks() {
-    nothingFoundMessage.classList.toggle('invisible', true)
+  
+  function loadBooks () {
+    loadMoreButton.classList.toggle('invisible', true);
+    nothingFoundMessage.classList.toggle('invisible', true);
     loadingSpin.classList.toggle('invisible', false);
+    
+    currentLoadingController = fetchBooks(
+      search.value
+      ,booksPerLoad
+      ,loadOffset
+      ,(books, booksFoundNumber) => { // onLoad
+        if (loadOffset === 0 && booksFoundNumber === 0) {
+          nothingFoundMessage.classList.toggle('invisible', false);
+        } 
+        loadOffset += booksPerLoad;
+    
+        const booksLeft = booksFoundNumber - booksPerLoad;
+    
+        loadMoreButton.textContent = `Load More (${booksLeft} left)`;
+        loadMoreButton.classList.toggle('invisible', !(booksLeft > 0));
 
-    currentLoadingController = fetchBooks(search.value, booksPerLoad, loadOffset, (books, booksFoundNumber) => {
-      if (loadOffset === 0 && booksFoundNumber === 0) {
-        nothingFoundMessage.classList.toggle('invisible', false)
-      } 
-      loadOffset += booksPerLoad;
-  
-      const booksLeft = booksFoundNumber - booksPerLoad;
-  
-      loadMoreButton.textContent = `Load More (${booksLeft} left)`;
-      loadMoreButton.classList.toggle('invisible', !(booksLeft > 0));
-
-      for (let book of books) {
-        const bookToPick = renderBookToPick(book, booksCollection);
-        modalItems.removeChild(endBox);
-        modalItems.appendChild(bookToPick);
-        modalItems.appendChild(endBox);
-  
-        loadedBooks.push(bookToPick); 
+        for (let book of books) {
+          const bookToPick = renderBookToPick(book, booksCollection);
+          modalItems.removeChild(endBox);
+          modalItems.appendChild(bookToPick);
+          modalItems.appendChild(endBox);
+    
+          loadedBooks.push(bookToPick); 
+        }
+    
+        loadingSpin.classList.toggle('invisible', true);
       }
-  
-      loadingSpin.classList.toggle('invisible', true);
-    });
-  }
+      ,() => { // onInterrupt
+      }
+    );
+  };
+
+  const debouncedLoadBooks = debounceDecorator(loadBooks, 500);
 
   loadMoreButton.addEventListener('click', (e) => {
     if (e.target.classList.contains('inactive')) {
@@ -83,20 +94,24 @@ export default function render(booksCollection) {
     loadBooks();
   });
   
-  search.addEventListener('change', (e) => {
+  search.addEventListener('input', (e) => {
+    if (search.value.trim() === '') {
+      return
+    }
     interruptLoading();
     clearSearch()
-    loadBooks();
+    debouncedLoadBooks();
   });
 
   closeButton.addEventListener('click', (e) => {
-    modal.close()
+    modal.close();
   });
   
   modal.addEventListener('close', (e) => {
     interruptLoading();
-    clearSearch()
-  })
+    clearSearch();
+    search.value = ''
+  });
   
   return modal;
 }
